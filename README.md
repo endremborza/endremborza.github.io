@@ -1,7 +1,7 @@
 # Endre Márk Borza
 
 ## Research projects
-- football thingy
+- [football thingy](/football-data-research/)
 - stable matching
 - hotels thingy (?)
 - rottentomatoes
