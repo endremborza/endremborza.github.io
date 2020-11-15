@@ -36,3 +36,8 @@
 - personal ontology
 - facebook messenger info
   - manchester match merge
+
+## Contributions
+- [pandas](https://github.com/pandas-dev/pandas/commits?author=endremborza)
+- [dask](https://github.com/dask/dask/commits?author=endremborza)
+- [pandas-profiling](https://github.com/pandas-profiling/pandas-profiling/commits?author=endremborza)
