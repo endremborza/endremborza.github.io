@@ -19,11 +19,7 @@
 - riki
 - teach
 - boilerplate + branthebuilder
-- contributions
-  - pandas
-  - dask
-  - pandas-profiling
-  - scikit-learn
+- clpbrd
 
 ## Doodles
 - misc-notebooks
