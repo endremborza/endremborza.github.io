@@ -5,6 +5,7 @@
 - stable matching
 - hotels thingy (?)
 - rottentomatoes
+- putative values
 
 ## Education
 - prog1
@@ -12,26 +13,35 @@
 - cause
 - network sci
 - tools
+  - django teaching app
   - typegame
   - speed guesser
+  - pybigo
+  - jkg_evaluators
+- demos
+  - cikk getter / github actions thingy
+  - data challenges
+  - docker demo
 
 ## Software
 - riki
-- teach
-- boilerplate + branthebuilder
+- django teach app
+- branthebuilder
 - clpbrd
 
 ## Doodles
 - misc-notebooks
-- cikk getter / github actions thingy
+  - feature-importance
+  - gluonts
+  - PCA vs umap
+- boilerplate
 - some data proc
   - cars
   - basketball
-- pybigo (?)
-- chess visuals
 - personal ontology
 - facebook messenger info
   - manchester match merge
+- delivery system frame
 
 ## Contributions
 - [pandas](https://github.com/pandas-dev/pandas/commits?author=endremborza)
