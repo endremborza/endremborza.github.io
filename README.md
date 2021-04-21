@@ -18,6 +18,18 @@ Research into values determining role-model selection and opinion formation in h
 
 ## Tools
 
+#### [ParquetRanger](https://github.com/endremborza/parquetranger)
+Tool to save or load and extend tables in different environments
+
+#### [BigO.jl](https://github.com/endremborza/BigO.jl)
+Julia library for complexity plotting and estimation
+
+#### [ColAssigner](https://github.com/endremborza/colassigner)
+Helps tracking and tracing back dataframe columns to their creation without using string literals
+
+#### [Python Package Boilerplate](https://github.com/endremborza/branthebuilder)
+With invoke command collection for easier and centralized development of the common elements of projects.
+
 #### [Typegame](https://github.com/endremborza/typegame)
 Small dash app for creating quizes for programming education
 
@@ -30,8 +42,6 @@ For organizing courses, lecures and their content.
 #### [Task Evaluation](https://jkg-evaluators.readthedocs.io/en/latest/index.html)
 Python package for evaluating simple programming tasks
 
-#### [Python Package Boilerplate](https://github.com/endremborza/python_boilerplate)
-With [invoke command collection](https://github.com/endremborza/branthebuilder) for easier and cnetralized development of the common elements of projects.
 
 ## Contributions
 - [pandas](https://github.com/pandas-dev/pandas/commits?author=endremborza)
