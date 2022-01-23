@@ -14,7 +14,7 @@ I'm running a small team called [Social Science Computing Unit Budapest](https:/
 Most of it is an ecosystem built around a central dataset and data-project standard/framework currently named [sscutils](https://github.com/sscu-budapest/sscutils).
 
 - [colassigner](https://github.com/endremborza/colassigner) so that we dont use string literals with pandas so much
-- [parquetranget](https://github.com/endremborza/parquetranger) to manage - save, load, extend - large datasets in partitioned parquet files
+- [parquetranger](https://github.com/endremborza/parquetranger) to manage - save, load, extend - large datasets in partitioned parquet files
 - a task queue orchestrator [atqo](https://github.com/endremborza/atqo)
 - raw data collection in [aswan](https://github.com/endremborza/aswan) - named after a dam
 - and some python package boilerplate [branthebuilder](https://github.com/endremborza/branthebuilder) so that we can start many others :)
