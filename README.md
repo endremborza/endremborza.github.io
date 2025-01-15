@@ -4,7 +4,7 @@ This is a more casual, professional history page thing. No grand conclusion, jus
 
 ## CCL - Corvinus
 
-Started working at [ccl](https://centerforcollectivelearning.org/), mostly on https://www.rankless.org/ but also to help others publish papers involving complex data pipelines. I managed to convince our director César (whose idea the site itself actually was) that I'd do the whole thing in Rust and Svelte without any large framework or ready-made tech like react, neo4j, or even anything SQL.
+Started working at [ccl](https://centerforcollectivelearning.org/), mostly on (rankless.org)[https://www.rankless.org/] but also to help others publish papers involving complex data pipelines. I managed to convince our director César (whose idea the site itself actually was) that I'd do the whole thing in Rust and Svelte without any large framework or ready-made tech like react, neo4j, or even anything SQL.
 
 ## Research
 
