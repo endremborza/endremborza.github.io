@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="root">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="blocks" type="BlockType" />
+        <xs:element name="linktypes" type="LinkTypeType" />
+      </xs:sequence>
+    </xs:complexType>
+
+    <xs:key name="LinkKey">
+      <xs:selector xpath="linktypes/link" />
+      <xs:field xpath="@id" />
+    </xs:key>
+
+    <xs:keyref name="ParentRef" refer="LinkKey">
+      <xs:selector xpath="blocks/block/type" />
+      <xs:field xpath="." />
+    </xs:keyref>
+
+
+  </xs:element>
+
+  <xs:complexType name="BlockType">
+    <xs:sequence>
+      <xs:element name="block" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="title" type="xs:string" />
+            <xs:element name="elem" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="title" type="xs:string" />
+                  <xs:element name="description" type="xs:string" minOccurs="0" />
+                </xs:sequence>
+                <xs:attribute name="type" type="xs:string" use="required" />
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="LinkTypeType">
+    <xs:sequence>
+      <xs:element name="linktype" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="name" type="xs:string" />
+          </xs:sequence>
+          <xs:attribute name="id" type="xs:string" use="required" />
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+
+</xs:schema>
