@@ -1,0 +1,38 @@
+body {
+  font-family: "Courier New", monospace;
+  max-width: 98%;
+  margin: 2rem auto;
+  line-height: 1.6;
+  background: black;
+}
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.card {
+  background: grey;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex: 1 1 300px;
+}
+h1,
+h2 {
+  color: #666;
+}
+h3 {
+  margin-top: 0px;
+  color: #111;
+}
+.desc {
+  color: #ccc;
+}
+.parent-ref {
+  font-size: 0.85rem;
+  color: #eee;
+  margin-top: 0.5rem;
+  font-style: italic;
+}

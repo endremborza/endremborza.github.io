@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="style.xsl"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="schema.xsd">
+	<blocks>
+		<block>
+			<title>I made</title>
+			<elem type="text">
+				<title>Rankless, a quick and pretty interactive visualization platform, built on massive data</title>
+			</elem>
+			<elem type="text">
+				<title>contributions to papers where the data was too large, complex or difficult to collect and process</title>
+			</elem>
+			<elem type="text">
+				<title>ML models and integer optimization software to optimize logistics of perishable goods, and assess the performance of soccer teams and players</title>
+			</elem>
+			<elem type="text">
+				<title>curricula for courses that I ended up teaching, about programming, data engineering and applied machine learning</title>
+			</elem>
+			<elem type="text">
+				<title>a bunch of small, open-source stuff to make my life and/or work easier</title>
+			</elem>
+
+		</block>
+		<block>
+			<title>I like</title>
+			<elem type="text">
+				<title>Knowledge Management</title>
+			</elem>
+			<elem type="text">
+				<title>Health and Longevity</title>
+			</elem>
+			<elem type="text">
+				<title>Football, D&amp;D, StarCraft and Chess</title>
+			</elem>
+			<elem type="text">
+				<title>Film and Popular Culture</title>
+			</elem>
+		</block>
+		<block>
+			<title>I use</title>
+			<elem type="text">
+				<title>python, Rust, svelte to build</title>
+			</elem>
+			<elem type="text">
+				<title>neovim, linux with leftwm and a split-keyboard to show off</title>
+			</elem>
+			<elem type="text">
+				<title>AI mostly from the command line and rather selectively, but appreciatively</title>
+			</elem>
+		</block>
+	</blocks>
+	<linktypes>
+		<linktype id="emb-gh">
+			<name>EMB GitHub link</name>
+		</linktype>
+	</linktypes>
+</root>
