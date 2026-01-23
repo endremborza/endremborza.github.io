@@ -7,7 +7,7 @@
 	};
 	export let node: Node;
 
-	function getFibs(n) {
+	function getFibs(n: number) {
 		const out = [1, 1];
 		while (out.length < n) {
 			let l = out.length;
@@ -20,7 +20,7 @@
 	//1.61803398875
 
 	let n = 7;
-	let fibs = getFibs();
+	let fibs = getFibs(n);
 
 	function handleClick(child: any) {
 		console.log(child);
@@ -32,30 +32,83 @@
 
 	let pWidth: number;
 	let pHeight: number;
+
+	type Layout = { isLandscape: boolean; padIsTop: boolean; unit: number; pSize: number };
+
+	function getLayout(height: number, width: number, fibs: number[]): Layout {
+		let n = fibs.length;
+		let smallD = fibs[n - 1];
+		let sumD = smallD + fibs[n - 2];
+		let upperPadLim = fibs[n - 2];
+		let lowerPadLim = fibs[Math.max(0, n - 4)];
+		let isLandscape = true;
+		console.log(lowerPadLim, upperPadLim);
+		if (height <= width * ((smallD + upperPadLim) / sumD)) {
+			if (height >= width * ((smallD + lowerPadLim) / sumD)) {
+				let pSize = height - width * (smallD / sumD);
+				return { unit: width / sumD, isLandscape, padIsTop: true, pSize };
+			}
+			if (width >= height * ((sumD + lowerPadLim) / smallD)) {
+				let pSize = width - height * (sumD / smallD);
+				return { unit: height / smallD, isLandscape, padIsTop: false, pSize };
+			}
+		}
+		isLandscape = false;
+		if (width <= (height * (lowerPadLim + smallD)) / sumD) {
+			let pSize = height - width * (sumD / smallD);
+			return { unit: width / smallD, isLandscape, padIsTop: true, pSize };
+		}
+		let pSize = width - height * (smallD / sumD);
+		return { unit: height / sumD, isLandscape, padIsTop: false, pSize }; //possibly wont fill it out?
+	}
+	$: layout = getLayout(pHeight, pWidth, fibs);
 </script>
 
 <div class="container" bind:clientWidth={pWidth} bind:clientHeight={pHeight}>
-	<div class="grid">
-		<div class="grid-item item0"><p>body {pWidth} x {pHeight}</p></div>
-		{#if node.children && node.children?.length > 0}
-			{#each node.children as child, i}
-				<div class="grid-item item{i + 1} clickable" on:click={() => handleClick(child)}>
-					<p>{child.title}</p>
-				</div>
-			{/each}
-		{/if}
-		{#if node.children && node.children?.length < 4}
-			<div class="grid-item item4 clickable">
-				<p>4 nothing</p>
-			</div>
-		{/if}
-	</div>
+	{#if pHeight != undefined && pWidth != undefined}
+		<div class="pad abs {layout.padIsTop ? 'tpad' : 'lpad'}" style="--psize:{layout.pSize}px">
+			<p>
+				{layout.isLandscape ? 'land' : 'port'}
+				{layout.padIsTop ? 'top' : 'left'}
+				{(layout.pSize / layout.unit).toFixed(1)}
+				{(pWidth / layout.unit).toFixed(1)}
+				{(pHeight / layout.unit).toFixed(1)}
+			</p>
+		</div>
+	{/if}
 </div>
 
 <style>
 	p {
 		margin: 1rem;
-		font-size: 10px;
+		font-size: 30px;
+		overflow: hidden;
+	}
+
+	.container {
+		height: 100%;
+		width: 100%;
+		margin: 0px;
+	}
+
+	.abs {
+		position: absolute;
+		border: 4px solid purple;
+		box-sizing: border-box;
+	}
+
+	.pad {
+		left: 0px;
+		top: 0px;
+		background-color: green;
+	}
+	.lpad {
+		height: 100%;
+		width: var(--psize);
+	}
+	.tpad {
+		height: var(--psize);
+		width: 100%;
 	}
 
 	.grid {
