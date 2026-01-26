@@ -19,7 +19,7 @@
 	const RATIO = (Math.sqrt(5) + 1) / 2;
 	//1.61803398875
 
-	let n = 7;
+	let n = 6;
 	let fibs = getFibs(n);
 
 	function handleClick(child: any) {
@@ -33,55 +33,157 @@
 	let pWidth: number;
 	let pHeight: number;
 
-	type Layout = { isLandscape: boolean; padIsTop: boolean; unit: number; pSize: number };
+	type Layout = {
+		isLandscape: boolean;
+		padLoc: 'top' | 'left' | 'none';
+		unit: number;
+		pSize: number;
+	};
+	type Tile = { top: number; left: number; height: number; width: number };
 
-	function getLayout(height: number, width: number, fibs: number[]): Layout {
+	function getLayout(width: number, height: number, fibs: number[]): Layout {
 		let n = fibs.length;
 		let smallD = fibs[n - 1];
 		let sumD = smallD + fibs[n - 2];
 		let upperPadLim = fibs[n - 2];
 		let lowerPadLim = fibs[Math.max(0, n - 4)];
 		let isLandscape = true;
-		console.log(lowerPadLim, upperPadLim);
 		if (height <= width * ((smallD + upperPadLim) / sumD)) {
 			if (height >= width * ((smallD + lowerPadLim) / sumD)) {
 				let pSize = height - width * (smallD / sumD);
-				return { unit: width / sumD, isLandscape, padIsTop: true, pSize };
+				return { unit: width / sumD, isLandscape, padLoc: 'top', pSize };
 			}
 			if (width >= height * ((sumD + lowerPadLim) / smallD)) {
 				let pSize = width - height * (sumD / smallD);
-				return { unit: height / smallD, isLandscape, padIsTop: false, pSize };
+				return { unit: height / smallD, isLandscape, padLoc: 'left', pSize };
 			}
+			let heightScaler = height / width / (smallD / sumD);
 		}
 		isLandscape = false;
 		if (width <= (height * (lowerPadLim + smallD)) / sumD) {
 			let pSize = height - width * (sumD / smallD);
-			return { unit: width / smallD, isLandscape, padIsTop: true, pSize };
+			return { unit: width / smallD, isLandscape, padLoc: 'top', pSize };
 		}
 		let pSize = width - height * (smallD / sumD);
-		return { unit: height / sumD, isLandscape, padIsTop: false, pSize }; //possibly wont fill it out?
+		return { unit: height / sumD, isLandscape, padLoc: 'left', pSize }; //possibly wont fill it out?
 	}
-	$: layout = getLayout(pHeight, pWidth, fibs);
+
+	type Direction = 'left' | 'right' | 'up' | 'down';
+
+	function tilesFromLayout(
+		layout: Layout,
+		extWidth: number,
+		extHeight: number,
+		fibs: number[]
+	): Tile[] {
+		const out: Tile[] = [];
+		if (extWidth == undefined) return out;
+		let top = 0;
+		let left = 0;
+		let width = extWidth;
+		let height = extHeight;
+		function addTile(sizeW: number, sizeH: number, d: Direction) {
+			let size = { width: sizeW, height: sizeH };
+			if (d == 'right') {
+				out.push({ top, left, ...size });
+				left += sizeW;
+				width -= sizeW;
+				top += sizeH;
+			} else if (d == 'down') {
+				left -= sizeW;
+				out.push({ top, left, ...size });
+				top += sizeH;
+				height -= sizeH;
+			} else if (d == 'left') {
+				top -= sizeH;
+				left -= sizeW;
+				out.push({ top, left, ...size });
+				width -= sizeW;
+			} else if (d == 'up') {
+				top -= sizeH;
+				out.push({ top, left, ...size });
+				height -= sizeH;
+				left += sizeW;
+			}
+		}
+		let ps = layout.pSize;
+		if (layout.padLoc == 'left') {
+			out.push({ top, left, width: ps, height });
+			left += ps;
+			width -= ps;
+		}
+		if (layout.padLoc == 'top') {
+			out.push({ top, left, width, height: ps });
+			top += ps;
+			height -= ps;
+		}
+		const DIRS: Direction[] = ['right', 'down', 'left', 'up'];
+		let dirInd = 0;
+		for (let i = 0; i < fibs.length; i++) {
+			let fibU = fibs[fibs.length - 1 - i] * layout.unit;
+			if (i == 0) {
+				let size = { height: fibU, width: fibU };
+				out.push({ top, left, ...size });
+				left += fibU;
+				if (layout.isLandscape) {
+					width -= fibU;
+				} else {
+					top += fibU;
+					height -= fibU;
+				}
+			} else {
+				addTile(fibU, fibU, DIRS[dirInd]);
+			}
+			if (!layout.isLandscape || i > 0) {
+				dirInd = (dirInd + 1) % DIRS.length;
+			}
+		}
+		return out;
+	}
+	function getColor(i: number, layout: Layout, fibs: number[]) {
+		const nArr = getColorArr(i / (fibs.length - 1));
+		return `rgb(${nArr.join(', ')})`;
+	}
+
+	export function getColorArr(rate: number) {
+		const uRate = Math.abs(rate - 0.5) * 2;
+		return [rate * 250, uRate * 220, 255 - rate * 250];
+	}
+
+	// the 'almost fitters' are a problem
+	// stretch one way a little
+	$: layout = getLayout(pWidth, pHeight, fibs);
+	$: tiles = tilesFromLayout(layout, pWidth, pHeight, fibs);
 </script>
 
 <div class="container" bind:clientWidth={pWidth} bind:clientHeight={pHeight}>
 	{#if pHeight != undefined && pWidth != undefined}
-		<div class="pad abs {layout.padIsTop ? 'tpad' : 'lpad'}" style="--psize:{layout.pSize}px">
-			<p>
-				{layout.isLandscape ? 'land' : 'port'}
-				{layout.padIsTop ? 'top' : 'left'}
-				{(layout.pSize / layout.unit).toFixed(1)}
-				{(pWidth / layout.unit).toFixed(1)}
-				{(pHeight / layout.unit).toFixed(1)}
-			</p>
-		</div>
+		{#each tiles as tile, i}
+			<div
+				class="abs"
+				style="top: {tile.top}px;left: {tile.left}px;width: {tile.width}px; height:{tile.height}px;background-color:{getColor(
+					i,
+					layout,
+					fibs
+				)}"
+			>
+				<p>
+					{i}
+					{layout.isLandscape ? 'land' : 'port'}
+					{layout.padLoc}
+					{(layout.pSize / layout.unit).toFixed(1)}
+					{(pWidth / layout.unit).toFixed(1)}
+					{(pHeight / layout.unit).toFixed(1)}
+				</p>
+			</div>
+		{/each}
 	{/if}
 </div>
 
 <style>
 	p {
 		margin: 1rem;
-		font-size: 30px;
+		font-size: 10px;
 		overflow: hidden;
 	}
 
@@ -93,60 +195,5 @@
 
 	.abs {
 		position: absolute;
-		border: 4px solid purple;
-		box-sizing: border-box;
-	}
-
-	.pad {
-		left: 0px;
-		top: 0px;
-		background-color: green;
-	}
-	.lpad {
-		height: 100%;
-		width: var(--psize);
-	}
-	.tpad {
-		height: var(--psize);
-		width: 100%;
-	}
-
-	.grid {
-		display: grid;
-		width: 100%;
-		aspect-ratio: 34 / 21;
-		gap: 8px;
-		grid-template-columns: minmax(0, 21fr) minmax(0, 5fr) minmax(0, 8fr);
-		grid-template-rows: minmax(0, 13fr) minmax(0, 3fr) minmax(0, 5fr);
-	}
-
-	.grid-item {
-		border: 1px solid #ccc;
-		padding: 0px;
-		min-width: 0;
-		min-height: 0;
-		overflow: hidden;
-		transition: all 0.2s ease-in-out;
-	}
-
-	.item0 {
-		grid-row: 1 / span 3;
-	}
-
-	.item1 {
-		/* grid-row: 1 / span 2; */
-		grid-column: 2 / span 2;
-	}
-
-	.item2 {
-		grid-column: 2 / span 1;
-	}
-
-	.item3 {
-		grid-row: 3 / span 1;
-	}
-	.item4 {
-		grid-column: 3 / span 1;
-		grid-row: 2 / span 2;
 	}
 </style>
