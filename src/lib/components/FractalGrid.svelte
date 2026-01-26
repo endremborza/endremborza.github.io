@@ -19,8 +19,9 @@
 	const RATIO = (Math.sqrt(5) + 1) / 2;
 	//1.61803398875
 
-	let n = 6;
+	let n = 5;
 	let fibs = getFibs(n);
+	let gap = 6;
 
 	function handleClick(child: any) {
 		console.log(child);
@@ -29,9 +30,6 @@
 	//padding is at least l-4, at most l-2
 	//if parent is extra tall / wide ??? - at first just leave space at the end, at some point maybe repetition of component
 	//make it reactive with scrolling, granular interaction only on tile 1, and possibly padding tile
-
-	let pWidth: number;
-	let pHeight: number;
 
 	type Layout = {
 		isLandscape: boolean;
@@ -62,7 +60,7 @@
 		isLandscape = false;
 		if (width <= (height * (lowerPadLim + smallD)) / sumD) {
 			let pSize = height - width * (sumD / smallD);
-			return { unit: width / smallD, isLandscape, padLoc: 'top', pSize };
+			if (pSize > 0) return { unit: width / smallD, isLandscape, padLoc: 'top', pSize };
 		}
 		let pSize = width - height * (smallD / sumD);
 		return { unit: height / sumD, isLandscape, padLoc: 'left', pSize }; //possibly wont fill it out?
@@ -78,8 +76,8 @@
 	): Tile[] {
 		const out: Tile[] = [];
 		if (extWidth == undefined) return out;
-		let top = 0;
-		let left = 0;
+		let top = gap / 2;
+		let left = gap / 2;
 		let width = extWidth;
 		let height = extHeight;
 		function addTile(sizeW: number, sizeH: number, d: Direction) {
@@ -140,41 +138,58 @@
 		}
 		return out;
 	}
-	function getColor(i: number, layout: Layout, fibs: number[]) {
-		const nArr = getColorArr(i / (fibs.length - 1));
+	function getColorR(i: number, layout: Layout, fibs: number[]) {
+		let sumN = fibs.length - 1 + (layout.padLoc != 'none' ? 1 : 0);
+		const nArr = getColorArr(i / sumN);
 		return `rgb(${nArr.join(', ')})`;
 	}
 
-	export function getColorArr(rate: number) {
-		const uRate = Math.abs(rate - 0.5) * 2;
-		return [rate * 250, uRate * 220, 255 - rate * 250];
+	export function getColorArr(rate: number): [number, number, number] {
+		return [120 + Math.sin(rate * 2 * Math.PI) * 100, 80 + Math.cos(rate * 2 * Math.PI) * 100, 200];
+	}
+
+	export function getColor(rate: number): string {
+		const hue = rate * 30 + 10; // avoid full wrap for smoother ends
+		return `hsl(${hue}, 50%, 75%)`;
+	}
+
+	export function getColorMuted(rate: number): string {
+		//muted
+		const hue = 200 + rate * 80;
+		const light = 40 + Math.sin(rate * Math.PI) * 20;
+		return `hsl(${hue}, 30%, ${light}%)`;
 	}
 
 	// the 'almost fitters' are a problem
 	// stretch one way a little
-	$: layout = getLayout(pWidth, pHeight, fibs);
-	$: tiles = tilesFromLayout(layout, pWidth, pHeight, fibs);
+	let pWidth: number;
+	let pHeight: number;
+	$: innerWidth = pWidth - gap;
+	$: innerHeight = pHeight - gap;
+
+	$: layout = getLayout(innerWidth, innerHeight, fibs);
+	$: tiles = tilesFromLayout(layout, innerWidth, innerHeight, fibs);
 </script>
 
-<div class="container" bind:clientWidth={pWidth} bind:clientHeight={pHeight}>
+<div class="container" bind:clientWidth={pWidth} bind:clientHeight={pHeight} style="--gap: {gap}px">
 	{#if pHeight != undefined && pWidth != undefined}
 		{#each tiles as tile, i}
 			<div
 				class="abs"
-				style="top: {tile.top}px;left: {tile.left}px;width: {tile.width}px; height:{tile.height}px;background-color:{getColor(
-					i,
-					layout,
-					fibs
-				)}"
+				style="top: {tile.top}px;left: {tile.left}px;width: {tile.width}px; height:{tile.height}px;}"
 			>
-				<p>
-					{i}
-					{layout.isLandscape ? 'land' : 'port'}
-					{layout.padLoc}
-					{(layout.pSize / layout.unit).toFixed(1)}
-					{(pWidth / layout.unit).toFixed(1)}
-					{(pHeight / layout.unit).toFixed(1)}
-				</p>
+				<div class="tile" style="background-color:{getColor(i, layout, fibs)}">
+					<span>
+						{i}
+						{#if i == 0}
+							{layout.isLandscape ? 'land' : 'port'}
+							{layout.padLoc}
+							{(layout.pSize / layout.unit).toFixed(1)}
+							{(pWidth / layout.unit).toFixed(1)}
+							{(pHeight / layout.unit).toFixed(1)}
+						{/if}
+					</span>
+				</div>
 			</div>
 		{/each}
 	{/if}
@@ -187,6 +202,10 @@
 		overflow: hidden;
 	}
 
+	span {
+		overflow: hidden;
+	}
+
 	.container {
 		height: 100%;
 		width: 100%;
@@ -195,5 +214,16 @@
 
 	.abs {
 		position: absolute;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.tile {
+		width: calc(100% - var(--gap));
+		height: calc(100% - var(--gap));
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 </style>
