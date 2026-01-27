@@ -1,72 +1,45 @@
 <script lang="ts">
-	type Node = {
-		title: string;
-		body: string;
-		zoomedBody?: string;
-		children?: Node[];
-	};
-	export let node: Node;
+	import { getColorByRate, getFibs, getLayout, type Layout, type TileContent } from '$lib/util';
+	import { flip } from 'svelte/animate';
+	import { quintOut } from 'svelte/easing';
+	import { crossfade } from 'svelte/transition';
 
-	function getFibs(n: number) {
-		const out = [1, 1];
-		while (out.length < n) {
-			let l = out.length;
-			out.push(out[l - 1] + out[l - 2]);
-		}
-		return out;
-	}
+	type Tile = { top: number; left: number; height: number; width: number };
+	type Direction = 'left' | 'right' | 'up' | 'down';
+
+	export let tilesContent: TileContent[];
+	export let n = 5;
+	export let gap = 10;
 
 	const RATIO = (Math.sqrt(5) + 1) / 2;
 	//1.61803398875
 
-	let n = 5;
 	let fibs = getFibs(n);
-	let gap = 6;
 
-	function handleClick(child: any) {
-		console.log(child);
+	function handleClick(tc: TileContent) {
+		let targetTile = 0;
+		let sourceI, targetI;
+		for (let i = 0; i < tilesContent.length; i++) {
+			if (tilesContent[i].id == tc.id) {
+				sourceI = i;
+			}
+			if (tilesContent[i].assignedTile == targetTile) {
+				targetI = i;
+			}
+		}
+		if (sourceI != undefined && targetI != undefined) {
+			[tilesContent[sourceI].assignedTile, tilesContent[targetI].assignedTile] = [
+				tilesContent[sourceI].assignedTile,
+				tilesContent[sourceI].assignedTile
+			];
+		}
+		tc.assignedTile = 0;
+		console.log(tc);
 	}
 	//top padding tile and left padding tile limited in size
 	//padding is at least l-4, at most l-2
 	//if parent is extra tall / wide ??? - at first just leave space at the end, at some point maybe repetition of component
 	//make it reactive with scrolling, granular interaction only on tile 1, and possibly padding tile
-
-	type Layout = {
-		isLandscape: boolean;
-		padLoc: 'top' | 'left' | 'none';
-		unit: number;
-		pSize: number;
-	};
-	type Tile = { top: number; left: number; height: number; width: number };
-
-	function getLayout(width: number, height: number, fibs: number[]): Layout {
-		let n = fibs.length;
-		let smallD = fibs[n - 1];
-		let sumD = smallD + fibs[n - 2];
-		let upperPadLim = fibs[n - 2];
-		let lowerPadLim = fibs[Math.max(0, n - 4)];
-		let isLandscape = true;
-		if (height <= width * ((smallD + upperPadLim) / sumD)) {
-			if (height >= width * ((smallD + lowerPadLim) / sumD)) {
-				let pSize = height - width * (smallD / sumD);
-				return { unit: width / sumD, isLandscape, padLoc: 'top', pSize };
-			}
-			if (width >= height * ((sumD + lowerPadLim) / smallD)) {
-				let pSize = width - height * (sumD / smallD);
-				return { unit: height / smallD, isLandscape, padLoc: 'left', pSize };
-			}
-			let heightScaler = height / width / (smallD / sumD);
-		}
-		isLandscape = false;
-		if (width <= (height * (lowerPadLim + smallD)) / sumD) {
-			let pSize = height - width * (sumD / smallD);
-			if (pSize > 0) return { unit: width / smallD, isLandscape, padLoc: 'top', pSize };
-		}
-		let pSize = width - height * (smallD / sumD);
-		return { unit: height / sumD, isLandscape, padLoc: 'left', pSize }; //possibly wont fill it out?
-	}
-
-	type Direction = 'left' | 'right' | 'up' | 'down';
 
 	function tilesFromLayout(
 		layout: Layout,
@@ -138,56 +111,59 @@
 		}
 		return out;
 	}
-	function getColorR(i: number, layout: Layout, fibs: number[]) {
+	function getColor(i: number, layout: Layout, fibs: number[]) {
 		let sumN = fibs.length - 1 + (layout.padLoc != 'none' ? 1 : 0);
-		const nArr = getColorArr(i / sumN);
-		return `rgb(${nArr.join(', ')})`;
+		let rate = i / sumN;
+		return getColorByRate(rate);
 	}
+	function styleFromTile(tile: Tile) {
+		return `top: ${tile.top}px; left: ${tile.left}px; width: ${tile.width}px; height: ${tile.height}px;`;
+	}
+	export const [send, receive] = crossfade({
+		duration: (d) => Math.sqrt(d * 200),
 
-	export function getColorArr(rate: number): [number, number, number] {
-		return [120 + Math.sin(rate * 2 * Math.PI) * 100, 80 + Math.cos(rate * 2 * Math.PI) * 100, 200];
-	}
+		fallback(node, params) {
+			const style = getComputedStyle(node);
+			const transform = style.transform === 'none' ? '' : style.transform;
 
-	export function getColor(rate: number): string {
-		const hue = rate * 30 + 10; // avoid full wrap for smoother ends
-		return `hsl(${hue}, 50%, 75%)`;
-	}
-
-	export function getColorMuted(rate: number): string {
-		//muted
-		const hue = 200 + rate * 80;
-		const light = 40 + Math.sin(rate * Math.PI) * 20;
-		return `hsl(${hue}, 30%, ${light}%)`;
-	}
+			return {
+				duration: 600,
+				easing: quintOut,
+				css: (t) => `
+				transform: ${transform} scale(${t});
+				opacity: ${t}
+			`
+			};
+		}
+	});
 
 	// the 'almost fitters' are a problem
-	// stretch one way a little
+	// maybe stretch one way a little
 	let pWidth: number;
 	let pHeight: number;
 	$: innerWidth = pWidth - gap;
 	$: innerHeight = pHeight - gap;
-
 	$: layout = getLayout(innerWidth, innerHeight, fibs);
 	$: tiles = tilesFromLayout(layout, innerWidth, innerHeight, fibs);
 </script>
 
 <div class="container" bind:clientWidth={pWidth} bind:clientHeight={pHeight} style="--gap: {gap}px">
 	{#if pHeight != undefined && pWidth != undefined}
-		{#each tiles as tile, i}
+		{#each tilesContent as tc (tc.id)}
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<!-- svelte-ignore a11y-no-static-element-interactions -->
 			<div
 				class="abs"
-				style="top: {tile.top}px;left: {tile.left}px;width: {tile.width}px; height:{tile.height}px;}"
+				style={styleFromTile(tiles[tc.assignedTile])}
+				on:click={() => handleClick(tc)}
+				in:receive={{ key: tc.id }}
+				out:send={{ key: tc.id }}
+				animate:flip={{ duration: 200 }}
 			>
-				<div class="tile" style="background-color:{getColor(i, layout, fibs)}">
+				<div class="tile" style="--col:{getColor(tc.assignedTile, layout, fibs)}">
+					<h2>{tc.title}</h2>
 					<span>
-						{i}
-						{#if i == 0}
-							{layout.isLandscape ? 'land' : 'port'}
-							{layout.padLoc}
-							{(layout.pSize / layout.unit).toFixed(1)}
-							{(pWidth / layout.unit).toFixed(1)}
-							{(pHeight / layout.unit).toFixed(1)}
-						{/if}
+						{@html tc.body}
 					</span>
 				</div>
 			</div>
@@ -225,5 +201,9 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		flex-direction: column;
+		border-radius: calc(var(--gap) / 0.7);
+		border: solid var(--col) calc(var(--gap) / 2);
+		box-sizing: border-box;
 	}
 </style>
