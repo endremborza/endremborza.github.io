@@ -1,28 +1,32 @@
-/* Global Styles */
 :root {
-	--background-color: #ffffff;
+	--palette-1: #433878;
+	--palette-2: #7e60bf;
+	--palette-3: #e4b1f0;
+	--palette-4: #ffe1ff;
+	--background-color: #aaaaaa;
 	--text-color: #333333;
 	--link-color: #007bff;
 	--hover-color: #0056b3;
-	--hh-color: #f0f0f0;
+	--tile-bg: rgba(255, 255, 255, 0.3);
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--background-color: #121212;
+		--background-color: #1a1a1a;
 		--text-color: #ffffff;
 		--link-color: #bb86fc;
 		--hover-color: #985eff;
-		--hh-color: #f0f0f0;
+		--tile-bg: rgba(0, 0, 0, 0.3);
 	}
 }
 
 body {
 	background-color: var(--background-color);
+	background-attachment: fixed;
 	color: var(--text-color);
 	margin: 0px;
 	padding: 0px;
-	font-family: monospace;
+	font-family: sans-serif;
 }
 
 h2 {
@@ -51,8 +55,4 @@ a:hover {
 
 .clickable {
 	cursor: pointer;
-}
-
-.clickable:hover {
-	background-color: rgba(50, 50, 50, 30%);
 }
