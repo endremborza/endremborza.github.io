@@ -1,125 +1,44 @@
 <script lang="ts">
-	import { getColorByRate, getFibs, getLayout, type Layout, type TileContent } from '$lib/util';
+	import {
+		getColorByRate,
+		getFibs,
+		getLayout,
+		styleFromTile,
+		tilesFromLayout,
+		type Layout,
+		type ShownContent,
+		type TileContent,
+		type TileContents
+	} from '$lib/util';
 	import { flip } from 'svelte/animate';
 	import { quintOut } from 'svelte/easing';
 	import { crossfade } from 'svelte/transition';
 
-	type Tile = { top: number; left: number; height: number; width: number };
-	type Direction = 'left' | 'right' | 'up' | 'down';
-
-	export let tilesContent: TileContent[];
+	export let tileContents: TileContents;
 	export let n = 5;
 	export let gap = 10;
 
-	const RATIO = (Math.sqrt(5) + 1) / 2;
+	// const RATIO = (Math.sqrt(5) + 1) / 2;
 	//1.61803398875
 
 	let fibs = getFibs(n);
-
-	function handleClick(tc: TileContent) {
-		let targetTile = 0;
-		let sourceI, targetI;
-		for (let i = 0; i < tilesContent.length; i++) {
-			if (tilesContent[i].id == tc.id) {
-				sourceI = i;
-			}
-			if (tilesContent[i].assignedTile == targetTile) {
-				targetI = i;
-			}
-		}
-		if (sourceI != undefined && targetI != undefined) {
-			[tilesContent[sourceI].assignedTile, tilesContent[targetI].assignedTile] = [
-				tilesContent[sourceI].assignedTile,
-				tilesContent[sourceI].assignedTile
-			];
-		}
-		tc.assignedTile = 0;
-		console.log(tc);
+	function handleClick(sc: ShownContent) {
+		let tc = tileContents[sc.id];
+		const newShow: ShownContent[] = [];
+		fillWithTc(newShow, tc, sc.id);
+		shownContent = newShow;
 	}
 	//top padding tile and left padding tile limited in size
 	//padding is at least l-4, at most l-2
 	//if parent is extra tall / wide ??? - at first just leave space at the end, at some point maybe repetition of component
 	//make it reactive with scrolling, granular interaction only on tile 1, and possibly padding tile
 
-	function tilesFromLayout(
-		layout: Layout,
-		extWidth: number,
-		extHeight: number,
-		fibs: number[]
-	): Tile[] {
-		const out: Tile[] = [];
-		if (extWidth == undefined) return out;
-		let top = gap / 2;
-		let left = gap / 2;
-		let width = extWidth;
-		let height = extHeight;
-		function addTile(sizeW: number, sizeH: number, d: Direction) {
-			let size = { width: sizeW, height: sizeH };
-			if (d == 'right') {
-				out.push({ top, left, ...size });
-				left += sizeW;
-				width -= sizeW;
-				top += sizeH;
-			} else if (d == 'down') {
-				left -= sizeW;
-				out.push({ top, left, ...size });
-				top += sizeH;
-				height -= sizeH;
-			} else if (d == 'left') {
-				top -= sizeH;
-				left -= sizeW;
-				out.push({ top, left, ...size });
-				width -= sizeW;
-			} else if (d == 'up') {
-				top -= sizeH;
-				out.push({ top, left, ...size });
-				height -= sizeH;
-				left += sizeW;
-			}
-		}
-		let ps = layout.pSize;
-		if (layout.padLoc == 'left') {
-			out.push({ top, left, width: ps, height });
-			left += ps;
-			width -= ps;
-		}
-		if (layout.padLoc == 'top') {
-			out.push({ top, left, width, height: ps });
-			top += ps;
-			height -= ps;
-		}
-		const DIRS: Direction[] = ['right', 'down', 'left', 'up'];
-		let dirInd = 0;
-		for (let i = 0; i < fibs.length; i++) {
-			let fibU = fibs[fibs.length - 1 - i] * layout.unit;
-			if (i == 0) {
-				let size = { height: fibU, width: fibU };
-				out.push({ top, left, ...size });
-				left += fibU;
-				if (layout.isLandscape) {
-					width -= fibU;
-				} else {
-					top += fibU;
-					height -= fibU;
-				}
-			} else {
-				addTile(fibU, fibU, DIRS[dirInd]);
-			}
-			if (!layout.isLandscape || i > 0) {
-				dirInd = (dirInd + 1) % DIRS.length;
-			}
-		}
-		return out;
-	}
 	function getColor(i: number, layout: Layout, fibs: number[]) {
 		let sumN = fibs.length - 1 + (layout.padLoc != 'none' ? 1 : 0);
 		let rate = i / sumN;
 		return getColorByRate(rate);
 	}
-	function styleFromTile(tile: Tile) {
-		return `top: ${tile.top}px; left: ${tile.left}px; width: ${tile.width}px; height: ${tile.height}px;`;
-	}
-	export const [send, receive] = crossfade({
+	const [send, receive] = crossfade({
 		duration: (d) => Math.sqrt(d * 200),
 
 		fallback(node, params) {
@@ -136,6 +55,38 @@
 			};
 		}
 	});
+	function getShownContent(tcs: TileContents, n: number): ShownContent[] {
+		const out: ShownContent[] = [];
+		for (const [k, tc] of Object.entries(tcs)) {
+			if (out.length > n - 2) break;
+			fillWithTc(out, tc, k);
+		}
+		fillRestShown(out, n);
+		return out;
+	}
+
+	function fillWithTc(scArr: ShownContent[], tc: TileContent, id: string) {
+		scArr.push({ title: tc.title, body: tc.body, assignedTile: scArr.length, id });
+		for (const childId of tc.children || []) {
+			if (scArr.length > n - 2) break;
+			let tcc = tileContents[childId];
+			if (tcc == undefined) {
+				console.error('tc', id, 'children', tc.children, 'child', childId);
+			}
+			scArr.push({ title: tcc.title, body: tcc.body, assignedTile: scArr.length, id: childId });
+		}
+	}
+	function fillRestShown(scArr: ShownContent[], n: number) {
+		while (scArr.length <= n) {
+			let i = scArr.length;
+			scArr.push({ title: '', body: '', assignedTile: i, id: `_empty${i}` });
+		}
+	}
+
+	function getExtraClass(tc: ShownContent) {
+		if (tc.id.startsWith('_') || tc.assignedTile == 0) return '';
+		return 'clickable';
+	}
 
 	// the 'almost fitters' are a problem
 	// maybe stretch one way a little
@@ -144,12 +95,13 @@
 	$: innerWidth = pWidth - gap;
 	$: innerHeight = pHeight - gap;
 	$: layout = getLayout(innerWidth, innerHeight, fibs);
-	$: tiles = tilesFromLayout(layout, innerWidth, innerHeight, fibs);
+	$: tiles = tilesFromLayout(layout, innerWidth, innerHeight, fibs, gap);
+	$: shownContent = getShownContent(tileContents, n);
 </script>
 
 <div class="container" bind:clientWidth={pWidth} bind:clientHeight={pHeight} style="--gap: {gap}px">
 	{#if pHeight != undefined && pWidth != undefined}
-		{#each tilesContent as tc (tc.id)}
+		{#each shownContent as tc (tc.id)}
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<!-- svelte-ignore a11y-no-static-element-interactions -->
 			<div
@@ -160,7 +112,10 @@
 				out:send={{ key: tc.id }}
 				animate:flip={{ duration: 200 }}
 			>
-				<div class="tile" style="--col:{getColor(tc.assignedTile, layout, fibs)}">
+				<div
+					class="tile {getExtraClass(tc)}"
+					style="--col:{getColor(tc.assignedTile, layout, fibs)}"
+				>
 					<h2>{tc.title}</h2>
 					<span>
 						{@html tc.body}
@@ -172,12 +127,6 @@
 </div>
 
 <style>
-	p {
-		margin: 1rem;
-		font-size: 10px;
-		overflow: hidden;
-	}
-
 	span {
 		overflow: hidden;
 	}
