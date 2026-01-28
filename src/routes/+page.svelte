@@ -2,28 +2,25 @@
 	import FractalGrid from '$lib/components/FractalGrid.svelte';
 	import fractalData from '$lib/data/fractal-data.json';
 	import githubRepos from '$lib/data/github-repos.json';
-	import type { TileContent } from '$lib/util';
+	import type { TileContent, TileContents } from '$lib/util';
 
-	let initTiles: TileContent[] = [
-		{ title: 'T1', assignedTile: 0, body: '<span>Tile one</span>', id: 't0' },
-		{ title: 'T2', assignedTile: 1, body: '<span>Tile two with longer text</span>', id: 't1' },
-		{ title: 'T3', assignedTile: 2, body: '<span>Tile three</span>', id: 't2' },
-		{ title: 'T4', assignedTile: 3, body: '<span>Tile four</span>', id: 't3' },
-		{ title: 'T5', assignedTile: 4, body: '<span>Tile five</span>', id: 't4' }
+	let initTiles = [
+		{ title: 'T1', body: '<span>Tile one</span>', id: 't0' },
+		{ title: 'T2', body: '<span>Tile two with longer text</span>', id: 't1' },
+		{ title: 'T3', body: '<span>Tile three</span>', id: 't2' },
+		{ title: 'T4', body: '<span>Tile four</span>', id: 't3', children: ['t4', 't0'] },
+		{ title: 'T5', body: '<span>Tile five</span>', id: 't4', children: ['t2', 't1', 't3'] }
 	];
 
-	let tilesContent = initTiles.slice(0, 4);
-	function goHome() {
-		// node = fractalData;
-	}
+	let tileContents: TileContents = Object.fromEntries(initTiles.map((e) => [e.id, e]));
 </script>
 
 <svelte:head>
 	<title>Endre Mark Borza</title>
 </svelte:head>
 
-<div class="clickablex" on:click={goHome}>
-	<FractalGrid bind:tilesContent />
+<div>
+	<FractalGrid {tileContents} />
 </div>
 
 <style>

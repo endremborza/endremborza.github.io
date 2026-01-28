@@ -26,6 +26,8 @@
 		let tc = tileContents[sc.id];
 		const newShow: ShownContent[] = [];
 		fillWithTc(newShow, tc, sc.id);
+		fillWithOld(newShow, shownContent);
+		fillRestShown(newShow, n);
 		shownContent = newShow;
 	}
 	//top padding tile and left padding tile limited in size
@@ -66,25 +68,34 @@
 	}
 
 	function fillWithTc(scArr: ShownContent[], tc: TileContent, id: string) {
-		scArr.push({ title: tc.title, body: tc.body, assignedTile: scArr.length, id });
+		scArr.push({ title: tc.title, body: tc.body, id });
 		for (const childId of tc.children || []) {
 			if (scArr.length > n - 2) break;
 			let tcc = tileContents[childId];
 			if (tcc == undefined) {
 				console.error('tc', id, 'children', tc.children, 'child', childId);
 			}
-			scArr.push({ title: tcc.title, body: tcc.body, assignedTile: scArr.length, id: childId });
+			scArr.push({ title: tcc.title, body: tcc.body, id: childId });
 		}
 	}
 	function fillRestShown(scArr: ShownContent[], n: number) {
 		while (scArr.length <= n) {
 			let i = scArr.length;
-			scArr.push({ title: '', body: '', assignedTile: i, id: `_empty${i}` });
+			scArr.push({ title: '', body: '', id: `_empty${i}` });
+		}
+	}
+	function fillWithOld(scArr: ShownContent[], oldArr: ShownContent[]) {
+		let haveIds = scArr.map((e) => e.id);
+		for (const oldSc of oldArr) {
+			if (!haveIds.includes(oldSc.id)) {
+				scArr.push(oldSc);
+			}
+			if (scArr.length > n - 2) break;
 		}
 	}
 
-	function getExtraClass(tc: ShownContent) {
-		if (tc.id.startsWith('_') || tc.assignedTile == 0) return '';
+	function getExtraClass(i: number, tc: ShownContent) {
+		if (tc.id.startsWith('_') || i == 0) return '';
 		return 'clickable';
 	}
 
@@ -101,21 +112,18 @@
 
 <div class="container" bind:clientWidth={pWidth} bind:clientHeight={pHeight} style="--gap: {gap}px">
 	{#if pHeight != undefined && pWidth != undefined}
-		{#each shownContent as tc (tc.id)}
+		{#each shownContent.entries() as [i, tc] (tc.id)}
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<!-- svelte-ignore a11y-no-static-element-interactions -->
 			<div
 				class="abs"
-				style={styleFromTile(tiles[tc.assignedTile])}
+				style={styleFromTile(tiles[i])}
 				on:click={() => handleClick(tc)}
 				in:receive={{ key: tc.id }}
 				out:send={{ key: tc.id }}
 				animate:flip={{ duration: 200 }}
 			>
-				<div
-					class="tile {getExtraClass(tc)}"
-					style="--col:{getColor(tc.assignedTile, layout, fibs)}"
-				>
+				<div class="tile {getExtraClass(i, tc)}" style="--col:{getColor(i, layout, fibs)}">
 					<h2>{tc.title}</h2>
 					<span>
 						{@html tc.body}
