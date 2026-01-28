@@ -53,5 +53,5 @@ a:hover {
 }
 
 .clickable:hover {
-	background-color: var(--hh-color);
+	background-color: rgba(50, 50, 50, 30%);
 }

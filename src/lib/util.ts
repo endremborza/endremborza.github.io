@@ -1,9 +1,16 @@
 export type TileContent = {
 	title: string;
-	id: string;
-	assignedTile: number;
 	body: string;
 	zoomedBody?: string;
+	children?: string[];
+};
+
+export type TileContents = Record<string, TileContent>
+
+export type ShownContent = {
+	title: string;
+	id: string;
+	body: string;
 };
 
 export type Layout = {
@@ -12,6 +19,10 @@ export type Layout = {
 	unit: number;
 	pSize: number;
 };
+
+
+export type Tile = { top: number; left: number; height: number; width: number };
+export type Direction = 'left' | 'right' | 'up' | 'down';
 
 export function getFibs(n: number) {
 	const out = [1, 1];
@@ -62,4 +73,82 @@ export function getLayout(width: number, height: number, fibs: number[]): Layout
 	}
 	let pSize = width - height * (smallD / sumD);
 	return { unit: height / sumD, isLandscape, padLoc: 'left', pSize }; //possibly wont fill it out?
+}
+
+export function tilesFromLayout(
+	layout: Layout,
+	extWidth: number,
+	extHeight: number,
+	fibs: number[],
+	gap: number,
+): Tile[] {
+	const out: Tile[] = [];
+	if (extWidth == undefined) return out;
+	let top = gap / 2;
+	let left = gap / 2;
+	let width = extWidth;
+	let height = extHeight;
+	function addTile(sizeW: number, sizeH: number, d: Direction) {
+		let size = { width: sizeW, height: sizeH };
+		if (d == 'right') {
+			out.push({ top, left, ...size });
+			left += sizeW;
+			width -= sizeW;
+			top += sizeH;
+		} else if (d == 'down') {
+			left -= sizeW;
+			out.push({ top, left, ...size });
+			top += sizeH;
+			height -= sizeH;
+		} else if (d == 'left') {
+			top -= sizeH;
+			left -= sizeW;
+			out.push({ top, left, ...size });
+			width -= sizeW;
+		} else if (d == 'up') {
+			top -= sizeH;
+			out.push({ top, left, ...size });
+			height -= sizeH;
+			left += sizeW;
+		}
+	}
+	let ps = layout.pSize;
+	if (layout.padLoc == 'left') {
+		out.push({ top, left, width: ps, height });
+		left += ps;
+		width -= ps;
+	}
+	if (layout.padLoc == 'top') {
+		out.push({ top, left, width, height: ps });
+		top += ps;
+		height -= ps;
+	}
+	const DIRS: Direction[] = ['right', 'down', 'left', 'up'];
+	let dirInd = 0;
+	for (let i = 0; i < fibs.length; i++) {
+		let fibU = fibs[fibs.length - 1 - i] * layout.unit;
+		if (i == 0) {
+			let size = { height: fibU, width: fibU };
+			out.push({ top, left, ...size });
+			left += fibU;
+			if (layout.isLandscape) {
+				width -= fibU;
+			} else {
+				top += fibU;
+				height -= fibU;
+			}
+		} else {
+			addTile(fibU, fibU, DIRS[dirInd]);
+		}
+		if (!layout.isLandscape || i > 0) {
+			dirInd = (dirInd + 1) % DIRS.length;
+		}
+	}
+	out.sort((l, r) => Math.min(r.height, r.width) - Math.min(l.height, l.width))
+	return out;
+}
+
+
+export function styleFromTile(tile: Tile) {
+	return `top: ${tile.top}px; left: ${tile.left}px; width: ${tile.width}px; height: ${tile.height}px;`;
 }
