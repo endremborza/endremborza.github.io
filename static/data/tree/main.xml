@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="tree.xsd">
+  <nodes>
+    <node id="home">
+      <title>Endre Márk Borza</title>
+      <body>
+        <p>
+          This is a thing I built, because I could only get myself to write about myself if the form
+      was at least mildly interesting.
+        </p>
+        <p>
+          I like valuable abstractions, large datasets, and things that
+          actually run, click around to learn about them.
+        </p>
+      </body>
+      <children>
+        <child ref="i-made" />
+        <child ref="i-like" />
+        <child ref="i-use" />
+      </children>
+    </node>
+    <node id="i-made">
+      <title>I made</title>
+      <body>
+        <ul>
+          <li>
+            <p><a href="https://www.rankless.org/">Rankless</a>, an interactive visualization
+      platform built on massive scholarly datasets </p>
+          </li>
+          <li>
+            <p>
+              Contributions to academic papers where the
+              data was too large or complex
+              to handle conventionally
+            </p>
+          </li>
+          <li>
+            <p>
+              Machine learning and optimization software
+              for logistics and football
+              analytics
+            </p>
+          </li>
+          <li>
+            <p>
+              Curricula for courses on programming, data
+              engineering, and applied ML
+            </p>
+          </li>
+          <li>
+            <p>
+              A collection of small, open-source tools that make my work easier
+            </p>
+          </li>
+        </ul>
+      </body>
+      <children>
+        <child ref="freelance" />
+        <child ref="academia" />
+        <child ref="applets" />
+      </children>
+    </node>
+    <node id="i-like">
+      <title>I like</title>
+      <body>
+        <ul>
+          <li>
+            <p>Knowledge management</p>
+          </li>
+          <li>
+            <p>Health and longevity</p>
+          </li>
+          <li>
+            <p>Football, D&amp;D, StarCraft, chess</p>
+          </li>
+          <li>
+            <p>Film and popular culture</p>
+          </li>
+        </ul>
+      </body>
+    </node>
+    <node id="i-use">
+      <title>I use</title>
+      <body>
+        <ul>
+          <li>
+            <p>Python, Rust, Svelte to build</p>
+          </li>
+          <li>
+            <p>Neovim, Linux, LeftWM, split keyboards</p>
+          </li>
+          <li>
+            <p>AI mostly from the command line, selectively but
+              appreciatively</p>
+          </li>
+        </ul>
+      </body>
+    </node>
+    <node id="academia">
+      <title>Research &amp; Teaching</title>
+      <zoomedBody>
+        <p>Large data, creative analysis.</p>
+      </zoomedBody>
+      <body>
+        <p> Since around 2014 I have worked on the data side of papers and a <a
+            href="https://gabors-data-analysis.com/">book</a>. </p>
+        <p>
+          Topics range from experimental economics to park visitation patterns.
+        </p>
+        <p>
+          Rajk courses and permanent professorship
+        </p>
+        <p>
+          Guest lecturer on ML, some applied, some theory
+        </p>
+      </body>
+    </node>
+    <node id="freelance">
+      <title>Freelance</title>
+      <zoomedBody>
+        <p>Football, ML and data collection</p>
+      </zoomedBody>
+      <body>
+        <p>Projects of machine learning for football recruitment and performance evaluation</p>
+        <p>Projects of complex data handling in retail</p>
+      </body>
+    </node>
+    <node id="applets">
+      <title>Applets and Open Source</title>
+      <zoomedBody>
+        <p>Small projects and contributions</p>
+      </zoomedBody>
+      <body>
+        <p>List of repos and some OS contributions with minor explanations</p>
+      </body>
+    </node>
+  </nodes>
+</site>
