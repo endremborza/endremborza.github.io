@@ -1,83 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-  elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="site">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="nodes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="node" maxOccurs="unbounded" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
 
-  <xsd:element name="site">
-    <xsd:complexType>
-      <xsd:sequence>
-        <xsd:element name="nodes">
-          <xsd:complexType>
-            <xsd:sequence>
-              <xsd:element name="node" maxOccurs="unbounded" />
-            </xsd:sequence>
-          </xsd:complexType>
-        </xsd:element>
-      </xsd:sequence>
-    </xsd:complexType>
+    <xs:key name="nodeId">
+      <xs:selector xpath="nodes/node" />
+      <xs:field xpath="@id" />
+    </xs:key>
 
-    <xsd:key name="nodeId">
-      <xsd:selector xpath="nodes/node" />
-      <xsd:field xpath="@id" />
-    </xsd:key>
+    <xs:keyref name="nodeRef" refer="nodeId">
+      <xs:selector xpath=".//child | .//link" />
+      <xs:field xpath="@ref" />
+    </xs:keyref>
+  </xs:element>
 
-    <xsd:keyref name="nodeRef" refer="nodeId">
-      <xsd:selector xpath=".//child | .//link" />
-      <xsd:field xpath="@ref" />
-    </xsd:keyref>
-  </xsd:element>
+  <xs:element name="node">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="title" type="xs:string" />
+        <xs:element name="zoomedBody" type="bodyType" minOccurs="0" />
+        <xs:element name="body" type="bodyType" />
+        <xs:element name="children" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="child" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="ref" type="xs:IDREF" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID" use="required" />
+    </xs:complexType>
+  </xs:element>
 
-  <xsd:element name="node">
-    <xsd:complexType>
-      <xsd:sequence>
-        <xsd:element name="title" type="xsd:string" />
-        <xsd:element name="zoomedBody" type="bodyType" minOccurs="0" />
-        <xsd:element name="body" type="bodyType" />
-        <xsd:element name="children" minOccurs="0">
-          <xsd:complexType>
-            <xsd:sequence>
-              <xsd:element name="child" maxOccurs="unbounded">
-                <xsd:complexType>
-                  <xsd:attribute name="ref" type="xsd:IDREF" use="required" />
-                </xsd:complexType>
-              </xsd:element>
-            </xsd:sequence>
-          </xsd:complexType>
-        </xsd:element>
-      </xsd:sequence>
-      <xsd:attribute name="id" type="xsd:ID" use="required" />
-    </xsd:complexType>
-  </xsd:element>
+  <xs:complexType name="bodyType" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="p" type="xs:string" />
+      <xs:element name="b" type="xs:string" />
+      <xs:element name="i" type="xs:string" />
+      <xs:element name="h2" type="xs:string" />
+      <xs:element name="h3" type="xs:string" />
+      <xs:element name="h4" type="xs:string" />
 
-  <xsd:complexType name="bodyType" mixed="true">
-    <xsd:choice minOccurs="0" maxOccurs="unbounded">
-      <xsd:element name="p" type="xsd:string" />
-      <xsd:element name="b" type="xsd:string" />
-      <xsd:element name="i" type="xsd:string" />
-      <xsd:element name="h2" type="xsd:string" />
-      <xsd:element name="h3" type="xsd:string" />
-      <xsd:element name="h4" type="xsd:string" />
+      <xs:element name="a">
+        <xs:complexType mixed="true">
+          <xs:attribute name="href" type="xs:anyURI" use="required" />
+        </xs:complexType>
+      </xs:element>
 
-      <xsd:element name="a">
-        <xsd:complexType mixed="true">
-          <xsd:attribute name="href" type="xsd:anyURI" use="required" />
-        </xsd:complexType>
-      </xsd:element>
+      <xs:element name="ul">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="li" type="xs:string" maxOccurs="unbounded" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
 
-      <xsd:element name="ul">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="li" type="xsd:string" maxOccurs="unbounded" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-
-      <xsd:element name="img">
-        <xsd:complexType>
-          <xsd:attribute name="src" type="xsd:anyURI" use="required" />
-          <xsd:attribute name="alt" type="xsd:string" use="optional" />
-        </xsd:complexType>
-      </xsd:element>
-    </xsd:choice>
-  </xsd:complexType>
-
-</xsd:schema>
+      <xs:element name="img">
+        <xs:complexType>
+          <xs:attribute name="src" type="xs:anyURI" use="required" />
+          <xs:attribute name="alt" type="xs:string" use="optional" />
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+</xs:schema>
