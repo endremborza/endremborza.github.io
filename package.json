@@ -5,6 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
+		"prebuild": "python scripts/fetch_github_data.py && python scripts/convert_tree_xml.py",
 		"build": "vite build",
 		"deploy": "gh-pages -d build --dotfiles --nojekyll",
 		"preview": "vite preview",
