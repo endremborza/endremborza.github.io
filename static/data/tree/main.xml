@@ -29,9 +29,6 @@
                                         <li> A collection of small, open-source tools that make my
                                 work easier </li>
                                 </ul>
-        <p>I like
-                                building things for myself. It mostly helps me learn tools and
-                                concepts, but sometimes they turn out to be useful.</p>
                         </body>
                         <children>
                                 <child ref="rankless" />
@@ -286,3 +283,4 @@
                 </node>
         </nodes>
 </site>
+
