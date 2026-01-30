@@ -119,6 +119,15 @@
                                 <child ref="football" />
                         </children>
                 </node>
+                <node id="rankless">
+                        <title>Rankless</title>
+                        <body>
+                                <a href="https://www.rankless.org/">Rankless</a>
+                        </body>
+                        <children>
+                                <child ref="ccl" />
+                        </children>
+                </node>
                 <node id="applets">
                         <title>Lots of Building</title>
                         <zoomedBody>
@@ -181,7 +190,7 @@
                                 </ul>
                         </body>
                 </node>
-                <node id="ccl-at-corvinus">
+                <node id="ccl">
                         <title>CCL @ Corvinus</title>
                         <body>
                                 <p>Started working in 2023 as a Research Data Engineer at <a
@@ -195,6 +204,9 @@
                                 without any large framework or ready-made tech like react, neo4j, or
                                 even anything SQL.</p>
                         </body>
+                        <children>
+                                <child ref="rankless" />
+                        </children>
                 </node>
                 <node id="krtk">
                         <title>Research Big Data Team @ KRTK</title>
