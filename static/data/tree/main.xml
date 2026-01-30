@@ -122,10 +122,23 @@
                 <node id="rankless">
                         <title>Rankless</title>
                         <body>
-                                <a href="https://www.rankless.org/">Rankless</a>
+                                <p><a href="https://www.rankless.org/">Rankless</a> was a great
+                                engineering challenge. I got to make a pipeline that processes over
+                                3 billion citations among 300 million papers, and ends up with an
+                                app that responds to the most intricate breakdown requests
+                                practically instantly. To do this you really need to heavily
+                                optimize everything. A specialized Rust backend that has multi stage
+                                compilation that aligns to the shape and size of the data, plus a
+                                Svelte front-end with hand-rolled SVGs, no dependencies, as
+                                performant as it comes</p>
+        <p> It was Cesar's idea at <a
+                                                href="https://centerforcollectivelearning.org/">ccl</a>
+
+                                </p>
                         </body>
                         <children>
                                 <child ref="ccl" />
+                                <child ref="i-use" />
                         </children>
                 </node>
                 <node id="applets">
@@ -199,10 +212,10 @@
                                 others publish papers involving complex data pipelines, but mostly I
                                 worked on <a href="https://www.rankless.org/">rankless.org</a> - a
                                 platform for the exploration of scholarly data. I managed to
-                                convince our director C&#xE9;sar - whose idea the site itself
-                                actually was - that I'd do the whole thing in Rust and Svelte
-                                without any large framework or ready-made tech like react, neo4j, or
-                                even anything SQL.</p>
+                                convince our director Cesar - whose idea the site itself actually
+                                was - that I'd do the whole thing in Rust and Svelte without any
+                                large framework or ready-made tech like react, neo4j, or even
+                                anything SQL.</p>
                         </body>
                         <children>
                                 <child ref="rankless" />
@@ -293,6 +306,14 @@
                                 really promote any of this.</p>
                         </body>
                 </node>
+                <node id="dnd">
+                        <title>D &amp; D</title>
+                        <body>
+                                <p>I started playing in 2020.</p>
+        <p>Note taking system</p>
+        <p>Crit
+                                Role and BG3</p>
+                        </body>
+                </node>
         </nodes>
 </site>
-
