@@ -7,6 +7,7 @@
 		tilesFromLayout,
 		type Layout,
 		type ShownContent,
+		type Tile,
 		type TileContent,
 		type TileContents
 	} from '$lib/util';
@@ -36,6 +37,7 @@
 	//make it reactive with scrolling, granular interaction only on tile 1, and possibly padding tile
 
 	function getColor(i: number, layout: Layout, fibs: number[]) {
+		return `var(--palette-${i})`;
 		let sumN = fibs.length - 1 + (layout.padLoc != 'none' ? 1 : 0);
 		let rate = i / sumN;
 		return getColorByRate(rate);
@@ -98,6 +100,9 @@
 		if (tc.id.startsWith('_') || i == 0) return '';
 		return 'clickable';
 	}
+	function getClamp(tile: Tile) {
+		return Math.min(Math.floor((tile.height - 50) / 50), 10);
+	}
 
 	// the 'almost fitters' are a problem
 	// maybe stretch one way a little
@@ -116,18 +121,24 @@
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<!-- svelte-ignore a11y-no-static-element-interactions -->
 			<div
-				class="abs"
+				class="abs {getExtraClass(i, tc)}"
 				style={styleFromTile(tiles[i])}
 				on:click={() => handleClick(tc)}
 				in:receive={{ key: tc.id }}
 				out:send={{ key: tc.id }}
 				animate:flip={{ duration: 200 }}
 			>
-				<div class="tile {getExtraClass(i, tc)}" style="--col:{getColor(i, layout, fibs)}">
-					<h2>{tc.title}</h2>
-					<span>
-						{@html tc.body}
-					</span>
+				<div
+					class="tile"
+					class:square={tiles[i].width === tiles[i].height}
+					style="--col:{getColor(i, layout, fibs)}"
+				>
+					{#if !tc.id.startsWith('_')}
+						<h2>{tc.title}</h2>
+						<span style="--clamp: {getClamp(tiles[i])}">
+							{@html tc.body}
+						</span>
+					{/if}
 				</div>
 			</div>
 		{/each}
@@ -135,14 +146,10 @@
 </div>
 
 <style>
-	span {
-		overflow: hidden;
-	}
-
 	.container {
 		height: 100%;
 		width: 100%;
-		margin: 0px;
+		margin: 0;
 	}
 
 	.abs {
@@ -156,11 +163,45 @@
 		width: calc(100% - var(--gap));
 		height: calc(100% - var(--gap));
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		flex-direction: column;
+		box-sizing: border-box;
+		padding: 1.5rem;
+
+		background-color: var(--tile-bg);
 		border-radius: calc(var(--gap) / 0.7);
 		border: solid var(--col) calc(var(--gap) / 2);
-		box-sizing: border-box;
+		box-shadow: 0 6px 12px rgba(255, 255, 255, 0.1);
+		transition:
+			transform 0.2s ease-in-out,
+			box-shadow 0.2s ease-in-out,
+			background-color 0.2s ease-in-out;
+	}
+
+	.clickable:hover .tile {
+		transform: translateY(calc(var(--gap) / -2));
+		box-shadow: 0 12px 24px rgba(255, 255, 255, 0.2);
+	}
+
+	.tile h2 {
+		width: 100%;
+		margin: 0 0 0.75rem 0;
+		font-size: 2.1rem;
+		text-align: center;
+		border-bottom: 1px solid var(--col);
+		padding-bottom: 0.5rem;
+	}
+
+	.tile span {
+		width: 100%;
+		font-size: 1.4rem;
+		text-align: left;
+		text-align: center;
+		overflow: hidden;
+		display: -webkit-box;
+		line-clamp: var(--clamp);
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: var(--clamp); /* Limit to 10 lines */
 	}
 </style>
