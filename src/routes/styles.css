@@ -1,23 +1,26 @@
 :root {
-	--palette-1: #433878;
-	--palette-2: #7e60bf;
-	--palette-3: #e4b1f0;
-	--palette-4: #ffe1ff;
-	--background-color: #aaaaaa;
-	--text-color: #333333;
-	--link-color: #007bff;
-	--hover-color: #0056b3;
-	--tile-bg: rgba(255, 255, 255, 0.3);
-}
+	/* Atomic decorative palette (0–8) */
+	--palette-6: #0e0b18;
+	--palette-5: #1f1932;
+	--palette-4: #312555;
+	--palette-3: #46347a;
+	--palette-2: #5d4fa0;
+	--palette-1: #776ac0;
+	--palette-0: #9a8ee0;
 
-@media (prefers-color-scheme: dark) {
-	:root {
-		--background-color: #1a1a1a;
-		--text-color: #ffffff;
-		--link-color: #bb86fc;
-		--hover-color: #985eff;
-		--tile-bg: rgba(0, 0, 0, 0.3);
-	}
+	--palette-7: #c2baf2;
+	--palette-8: #edeafd;
+
+	/* UI / layout colors (independent system) */
+	--background-color: #181622;
+	--text-color: #dcd8ec;
+	--text-muted: #9b96b4;
+
+	--link-color: #8f8aff;
+	--hover-color: #a8a3ff;
+
+	--tile-bg: rgba(36, 32, 52, 0.75);
+	--tile-border: rgba(200, 192, 240, 0.12);
 }
 
 body {
