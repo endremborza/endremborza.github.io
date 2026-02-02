@@ -1,26 +1,26 @@
 :root {
 	/* Atomic decorative palette (0–8) */
-	--palette-6: #0e0b18;
-	--palette-5: #1f1932;
-	--palette-4: #312555;
-	--palette-3: #46347a;
-	--palette-2: #5d4fa0;
-	--palette-1: #776ac0;
-	--palette-0: #9a8ee0;
+	--palette-6: #0c0c0c;
+	--palette-5: #1b1b1b;
+	--palette-4: #2b2b2b;
+	--palette-3: #3d3d3d;
+	--palette-2: #555555;
+	--palette-1: #6d6d6d;
+	--palette-0: #8f8f8f;
 
-	--palette-7: #c2baf2;
-	--palette-8: #edeafd;
+	--palette-7: #bdbdbd;
+	--palette-8: #ededed;
 
-	/* UI / layout colors (independent system) */
-	--background-color: #181622;
-	--text-color: #dcd8ec;
-	--text-muted: #9b96b4;
+	/* UI / layout colors */
+	--background-color: #151515;
+	--text-color: #d8d8d8;
+	--text-muted: #9a9a9a;
 
-	--link-color: #8f8aff;
-	--hover-color: #a8a3ff;
+	--link-color: #8c8c8c;
+	--hover-color: #a3a3a3;
 
-	--tile-bg: rgba(36, 32, 52, 0.75);
-	--tile-border: rgba(200, 192, 240, 0.12);
+	--tile-bg: rgba(34, 34, 34, 0.75);
+	--tile-border: rgba(200, 200, 200, 0.12);
 }
 
 body {
