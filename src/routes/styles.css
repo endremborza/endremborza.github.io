@@ -12,14 +12,14 @@
 	--palette-8: #f5f5f5;
 
 	/* UI / layout colors */
-	--background-color: #0f0f0f;
+	--background-color: #010101;
 	--text-color: #e6e6e6;
 	--text-muted: #9f9f9f;
 
-	--link-color: #b0b0b0;
-	--hover-color: #d0d0d0;
+	--link-color: #7a82a8;
+	--hover-color: #9aa2c4;
 
-	--tile-bg: rgba(28, 28, 28, 0.78);
+	--tile-bg: rgba(28, 28, 28, 0.48);
 	--tile-border: rgba(255, 255, 255, 0.16);
 }
 
