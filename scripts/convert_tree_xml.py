@@ -41,15 +41,20 @@ def convert_xml_to_json():
     ids = set(n["id"] for n in nodes_data)
     childids = set()
     missing = set()
+    childlesses = []
     for n in nodes_data:
         for c in n["children"]:
             childids.add(c)
             if c not in ids:
                 missing.add(c)
+        if not n["children"]:
+            childlesses.append(n["id"])
     dangling = ids - childids
-    assert (not missing) and (
-        len(dangling) < 2
-    ), f"{missing} ids are not defined, {dangling} are dangling"
+    if missing or len(dangling) > 1:
+        print(
+            f"{missing} ids are not defined\n{dangling} are dangling\n{childlesses} are childless"
+        )
+        return
 
     with open(OUTPUT_PATH, "w") as f:
         json.dump(nodes_data, f, indent=2)
