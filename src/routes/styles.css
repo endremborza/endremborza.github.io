@@ -23,6 +23,24 @@
 	--tile-border: rgba(255, 255, 255, 0.16);
 }
 
+html {
+	font-size: 1.6vmin;
+}
+
+/* Small phones */
+@media (max-width: 400px), (max-height: 400px) {
+	html {
+		font-size: 10px;
+	}
+}
+
+/* Large screens */
+@media (min-width: 1400px) and (min-height: 800px) {
+	html {
+		font-size: 20px;
+	}
+}
+
 body {
 	background-color: var(--background-color);
 	background-attachment: fixed;
@@ -37,13 +55,8 @@ h2 {
 	padding-bottom: 0.5rem;
 }
 
-ul {
-	list-style: none;
-	padding: 0;
-}
-
 li {
-	margin-bottom: 0.5rem;
+	margin-bottom: 1.2rem;
 }
 
 a {
