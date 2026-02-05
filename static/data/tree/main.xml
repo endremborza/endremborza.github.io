@@ -4,7 +4,7 @@
                 <node id="home">
                         <title>I am</title>
                         <body>
-                                <p><b>Endre Borza</b>, and I made this to compile and present
+                                <p><b>Endre Borza</b>. I made this page to compile and present
                                 information about myself. </p>
                         </body>
                         <children>
@@ -79,33 +79,37 @@
                                 experimental economics, to park visitation patterns. The common
                                 thread is large, complex datasets that needed efficient processing,
                                 or creative analysis.</p>
-        <p>In 2015 I started <b>teaching</b> @ <a
+                                <p>In 2015 I started <b>teaching</b> @ <a
                                                 href="http://rajk.eu/home/">Rajk</a>, and since then
                                 have taught courses in Programming and Algorithm Design, Applied
                                 Algorithm Design for Data Processing, and Statistical Methods for
                                 Causal Inference. I am also sometimes a guest instructor in machine
                                 learning and network science courses, both at rajk and at Corvinus
                                 University.</p>
-        <p>Turns out, I quite like teaching, and Rajk, with
+                                <p>Turns out, I quite like teaching, and Rajk, with
                                 small classes and generally motivated students, was a great fit. I
                                 even got awarded the Permanent Professors of Rajk College title,
                                 which might be my favorite thing I've got as an accolade and the one
                                 thing I will brag about without anyone asking.</p>
                         </body>
+                        <children>
+                                <child ref="ccl" />
+                                <child ref="krtk" />
+                        </children>
                 </node>
                 <node id="profession">
                         <title>Private Sector Work</title>
                         <body>
-                                <h2>Data Science @ Lidl</h2>
-        <p>2018-2021 I worked at Lidl as a data
+                                <h4>Data Science @ Lidl</h4>
+                                <p>2018-2021 I worked at Lidl as a data
                                 scientist. It was interesting, challenging, paid well, I learned a
                                 lot. It was a demanding environment with high employee turnover but
                                 still high productivity. After a few years, I got tired of not being
                                 able to show anything I've done to anybody, and not owning any of
                                 the fruits of my labor, so I took a massive pay cut and moved to
                                 academia.</p>
-        <h2>Freelance</h2>
-        <p>Since I primarily work in academia
+                                <h4>Freelance</h4>
+                                <p>Since I primarily work in academia
                                 since 2021, I did set up a gig where I can do consulting and
                                 development contract work still in the private sector. I find that
                                 it is nice to meet challenges that have market value and it's nice
@@ -117,6 +121,8 @@
                         <children>
                                 <child ref="lidl" />
                                 <child ref="football" />
+                                <child ref="contributions" />
+                                <child ref="krtk" />
                         </children>
                 </node>
                 <node id="rankless">
@@ -131,9 +137,8 @@
                                 compilation that aligns to the shape and size of the data, plus a
                                 Svelte front-end with hand-rolled SVGs, no dependencies, as
                                 performant as it comes</p>
-        <p> It was Cesar's idea at <a
+                                <p> It was Cesar's idea at <a
                                                 href="https://centerforcollectivelearning.org/">ccl</a>
-
                                 </p>
                         </body>
                         <children>
@@ -155,7 +160,7 @@
                                                 href="https://github.com/endremborza/Encoref.jl">
                                 Julia</a>, a <a href="https://github.com/endremborza/BigO.jl">Julia
                                 library</a> for complexity plotting and estimation.</p>
-        <p><strong>
+                                <p><strong>
                                 Apps</strong> like <a
                                                 href="https://github.com/endremborza/scimagojr-search-engine">a
                                 browser extension</a> to search for a scientific journal with one
@@ -177,31 +182,24 @@
                                 evaluation</a>, tinder-like quick evaluation tools for collective
                                 decision making and many failed others. I tried vanilla javascript
                                 with google sheets backends, raw PHP 5, and eventually Django. Most
-                                of them got the job done at the time, but for me the biggest benefit
-                                was getting my hands dirty, even before working together with a
-                                group of senior, experienced developers later.</p>
-        <p>These are
-                                mostly some sort of software that all become stale as versions move
-                                on. <strong>Simple tools</strong>, are fun because they can just be <em>
-                                done</em>, like an interactive <a
+                                of them got the job done at the time, but the biggest benefit was
+                                getting my hands dirty, even before working together with a group of
+                                senior developers later.</p>
+                                <p>These are mostly some sort of
+                                software that all become stale as versions move on. <strong>Simple
+                                tools</strong>, are fun because they can just be <em> done</em>,
+                                like an interactive <a
                                                 href="https://endremborza.github.io/funtum-computing/">
                                 article</a> explaining quantum states and gates with hand-rolled 3d
                                 SVGs of Bloch-spheres, or a <a
                                                 href="https://endremborza.github.io/static-snippets/box">
                                 tool</a> that helps my friend figure out how to cut a few pieces of
                                 wood to make a house-like bed for my godson.</p>
-        <h4>Other Repos</h4>
-        <ul>
-                                        <li>aswan</li>
-                                        <li>sqlmermaid</li>
-                                        <li>atqo</li>
-                                        <li>datazimmer</li>
-                                        <li>parquetranger</li>
-                                        <li>partcsv</li>
-                                        <li>shackleton</li>
-                                        <li>branthebuilder</li>
-                                </ul>
                         </body>
+                        <children>
+                                <child ref="contributions" />
+                                <child ref="config" />
+                        </children>
                 </node>
                 <node id="ccl">
                         <title>CCL @ Corvinus</title>
@@ -212,28 +210,29 @@
                                 others publish papers involving complex data pipelines, but mostly I
                                 worked on <a href="https://www.rankless.org/">rankless.org</a> - a
                                 platform for the exploration of scholarly data. I managed to
-                                convince our director Cesar - whose idea the site itself actually
-                                was - that I'd do the whole thing in Rust and Svelte without any
-                                large framework or ready-made tech like react, neo4j, or even
-                                anything SQL.</p>
+                                convince our director that I'd do the whole thing in Rust and Svelte
+                                without any large framework or ready-made tech like react, neo4j, or
+                                even anything SQL.</p>
+                                <p>I also was responsible for setting up
+                                working environments for data heavy computations in research.</p>
                         </body>
                         <children>
                                 <child ref="rankless" />
                         </children>
                 </node>
                 <node id="krtk">
-                        <title>Research Big Data Team @ KRTK</title>
+                        <title>Research Big Data Team</title>
                         <body>
                                 <p>In 2021 I set up a small team called <a
                                                 href="https://sscu-budapest.github.io/">Social
-                                Science Computing Unit Budapest</a> and we started to build a
-                                comprehensive data science toolset for scientific research. It
-                                slowed down a lot due to a range of issues, mostly around demand,
-                                but we did build a central dataset and data-project
-                                standard/framework named <a
+                                Science Computing Unit Budapest</a> at the Centre for Economic and
+                                Regional Studies. We started to build a comprehensive data science
+                                toolset for scientific research. It slowed down a lot due to a range
+                                of issues, mostly around demand, but we did build a central dataset
+                                and data-project standard/framework named <a
                                                 href="https://github.com/sscu-budapest/datazimmer">
                                 datazimmer</a>.</p>
-        <p>We also built tools around it like <a
+                                <p>We also built tools around it like <a
                                                 href="https://github.com/endremborza/colassigner">
                                 colassigner</a> so that we don't use string literals with pandas so
                                 much, <a href="https://github.com/endremborza/parquetranger">
@@ -245,48 +244,38 @@
                                 - named after a dam, and some python package boilerplate <a
                                                 href="https://github.com/endremborza/branthebuilder">
                                 branthebuilder</a> so that we can start many others.</p>
-        <p>We also
+                                <p>We also
                                 set up a <em>lot</em> of datasets for research around retail,
                                 weather, job-listings, chess, real-estate, football, news articles,
                                 interconnected wiki-pages, movies, etc. many of them periodically,
-                                automatically updating. I'm still working on it as of 2025.</p>
+                                automatically updating.</p>
                         </body>
+                        <children>
+                                <child ref="applets" />
+                                <child ref="contributions" />
+                        </children>
                 </node>
                 <node id="lidl">
                         <title>Data Science @ Lidl</title>
                         <body>
-                                <p>We developed machine learning for demand prediction and
-                                algorithms to optimize delivery and distribution. We were quite
-                                successful, a lot of what we did got scaled up and is being used by
-                                Lidl widely. I also got to work with professional developers and
-                                infra people and gain experience with technologies less frequently
-                                used in data science jobs like Kubernetes, Kafka, Elasticsearch, a <em>
-                                lot</em> of CI/CD and so on. I hope they don't sue me for exposing a
-                                few things they use. Lidl is very protective and litigious</p>
-                        </body>
-                </node>
-                <node id="teaching">
-                        <title>Teaching</title>
-                        <body>
-                                <p>In 2015 I started teaching @ <a href="http://rajk.eu/home/">Rajk</a>,
-                                and since then have taught courses in Programming and Algorithm
-                                Design, Applied Algorithm Design for Data Processing, Statistical
-                                Methods for Causal Inference. I am also sometimes a guest instructor
-                                in machine learning and network science courses, both at rajk and at
-                                Corvinus.</p>
-        <p>Turns out, I quite like teaching, and Rajk, with
-                                small classes and generally motivated students, was a great fit. I
-                                even got awarded the Permanent Professors of Rajk College title,
-                                which might be my favorite thing I've got as an accolade and the one
-                                thing I will brag about without anyone asking.</p>
+                                <p>Starting in 2018, we developed machine learning for demand
+                                prediction and algorithms to optimize delivery and distribution. We
+                                were quite successful, a lot of what we did got scaled up and is
+                                being used by Lidl widely. I also got to work with experienced
+                                developers and infra people plus technologies less frequently used
+                                in data science jobs like Kubernetes, Kafka, Elasticsearch, a <em>
+                                lot</em> of CI/CD and so on. </p>
+                                <p>I quit mostly because I wanted
+                                more ownership of my work. It was ruthless, difficult and great</p>
                         </body>
                 </node>
                 <node id="contributions">
                         <title>Contributions</title>
                         <body>
-                                <p>I think open-source contributions are a great way to learn, and
-                                so a while I did a bit of that but lost a bit of interest recently.
-                                However, I managed to contribute to <a
+                                <p>Open-source contributions are a great way to learn, and in many
+                                cases the best way to truly understand a tool is to make yourself be
+                                able to improve it. So for a while I did a bit of that but lost
+                                interest recently. I contributed to <a
                                                 href="https://github.com/pandas-dev/pandas/commits?author=endremborza">
                                 pandas</a>, <a
                                                 href="https://github.com/dask/dask/commits?author=endremborza">
@@ -294,13 +283,14 @@
                                                 href="https://github.com/pandas-profiling/pandas-profiling/commits?author=endremborza">
                                 pandas-profiling</a>, <a
                                                 href="https://github.com/JuliaLang/julia/commits?author=endremborza">
-                                julia</a>, <a
+                                the Julia language</a>, <a
                                                 href="https://github.com/fsspec/filesystem_spec/commits?author=endremborza">
                                 fsspec</a>, <a
                                                 href="https://github.com/iterative/dvc/commits?author=endremborza">
-                                dvc</a>.</p>
-        <p>What was really nice however, is <a
-                                                href="https://github.com/endremborza/sqlmermaid">a
+                                and dvc</a>.</p>
+
+                                <p><a
+                                                href="https://github.com/endremborza/sqlmermaid">A
                                 project of mine</a> that visualizes sql schemas with python even got
                                 a PR from a random person. I merged it, it was lovely, since I never
                                 really promote any of this.</p>
@@ -309,11 +299,58 @@
                 <node id="dnd">
                         <title>D &amp; D</title>
                         <body>
-                                <p>I started playing in 2020.</p>
-        <p>Note taking system</p>
-        <p>Crit
-                                Role and BG3</p>
+                                <p>I started playing in 2020, and it turned out to be one of my
+                                primary recreational activities.</p>
+                                <p>I find that running a D &amp;
+                                D campaign is the ultimate test of any incorporeal inventory and
+                                note-taking system. You need to build a world, quickly retrieve
+                                information, very quickly input new information, and keep track of
+                                the knowledge of the world from the point of view of several PCs and
+                                NPCs. After trying a great number of options from the PKM and
+                                note-taking space, I settled for the time on <a
+                                                href="https://github.com/logseq/logseq">Logseq</a>,
+                                but am constantly building and improving my setup. </p>
                         </body>
+                </node>
+                <node id="football">
+                        <title>Football</title>
+                        <body>
+                                <p>Worked on ML models and iterative algorithm design for evaluating
+                                team performance, player value and contract terms</p>
+                                <p>Worked on a
+                                few papers, where in some cases complex football was used to draw
+                                parallels with other fields, or just analyzed the behaviour of
+                                referees</p>
+                                <p>I sometimes create small pieces of analysis about
+                                football for myself, I rarely share it but <a
+                                                href="https://bits.borza.cc/pl-fixtures">here</a> is
+                                one about the difficulty of partitions of Premier League fixtures.</p>
+
+                        </body>
+
+                </node>
+                <node id="culture">
+                        <title>Films and Pop Culture</title>
+                        <body>
+                                <p>I like writing short reviews from time to time about films,
+                                games, albums as it is great practice in expression. <a
+                                                href="https://www.imdb.com/user/ur23979373/reviews">Film
+                                reviews</a> are public on imdb, <a
+                                                href="https://rateyourmusic.com/~endremborza">music</a>is
+                                going a lot slower</p>
+                        </body>
+                </node>
+                <node id="config">
+                        <title>Configuration</title>
+                        <body>
+                                <p>I like having everything being derived from code, easily
+                                reproducible. I try keeping everything I need that is necessary to
+                                setup a working environment for myself in one place <a
+                                                href="https://github.com/endremborza/setup">here</a>,
+                                but I fall behind in commiting everything nicely</p>
+
+                        </body>
+
                 </node>
         </nodes>
 </site>
