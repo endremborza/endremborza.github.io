@@ -8,69 +8,35 @@
                                 information about myself. </p>
                         </body>
                         <children>
-                                <child ref="i-made" />
-                                <child ref="i-like" />
-                                <child ref="i-use" />
+                                <child ref="artifacts" />
+                                <child ref="academia" />
+                                <child ref="tools-tastes" />
                         </children>
                 </node>
-                <node id="i-made">
-                        <title>I made</title>
+                <node id="artifacts">
+                        <title>Artifacts</title>
                         <body>
+                                <p>I built</p>
                                 <ul>
                                         <li><a href="https://www.rankless.org/">Rankless</a>, an
                                 interactive visualization platform built on massive scholarly
                                 datasets </li>
-                                        <li> Contributions to academic papers where the data was too
-                                large or complex to handle conventionally </li>
                                         <li> Machine learning and optimization software for
                                 logistics and football analytics </li>
-                                        <li> Curricula for courses on programming, data engineering,
-                                and applied ML </li>
                                         <li> A collection of small, open-source tools that make my
                                 work easier </li>
                                 </ul>
                         </body>
                         <children>
                                 <child ref="rankless" />
-                                <child ref="academia" />
-                                <child ref="profession" />
+                                <child ref="data-at-scale" />
                                 <child ref="applets" />
-                        </children>
-                </node>
-                <node id="i-like">
-                        <title>I like</title>
-                        <body>
-                                <ul>
-                                        <li> Knowledge management </li>
-                                        <li> Health and longevity </li>
-                                        <li> Football, D&amp;D, StarCraft, chess </li>
-                                        <li> Film and popular culture </li>
-                                </ul>
-                        </body>
-                        <children>
-                                <child ref="football" />
-                                <child ref="dnd" />
-                                <child ref="culture" />
-                        </children>
-                </node>
-                <node id="i-use">
-                        <title>I use</title>
-                        <body>
-                                <ul>
-                                        <li> Python, Rust, Svelte to build </li>
-                                        <li> Neovim, Linux, LeftWM, split keyboards </li>
-                                        <li> AI mostly from the command line, selectively but
-                                appreciatively </li>
-                                </ul>
-                        </body>
-                        <children>
-                                <child ref="config" />
                         </children>
                 </node>
                 <node id="academia">
                         <title>Research &amp; Teaching</title>
                         <body>
-                                <p>Since around 2014 I have been working on the data side of a bunch
+                                <p>Since <b>2014</b> I have been working on the data side of a bunch
                                 of <b>papers</b> and one <a href="https://gabors-data-analysis.com/">
                                 book</a>, first I got some "thanks" in the acknowledgments, then I
                                 started to get <a
@@ -93,36 +59,33 @@
                                 thing I will brag about without anyone asking.</p>
                         </body>
                         <children>
-                                <child ref="ccl" />
-                                <child ref="krtk" />
+                                <child ref="papers" />
+                                <child ref="teaching" />
+                                <child ref="research-infra" />
                         </children>
                 </node>
-                <node id="profession">
-                        <title>Private Sector Work</title>
+                <node id="tools-tastes">
+                        <title>Tools &amp; Tastes</title>
                         <body>
-                                <h4>Data Science @ Lidl</h4>
-                                <p>2018-2021 I worked at Lidl as a data
-                                scientist. It was interesting, challenging, paid well, I learned a
-                                lot. It was a demanding environment with high employee turnover but
-                                still high productivity. After a few years, I got tired of not being
-                                able to show anything I've done to anybody, and not owning any of
-                                the fruits of my labor, so I took a massive pay cut and moved to
-                                academia.</p>
-                                <h4>Freelance</h4>
-                                <p>Since I primarily work in academia
-                                since 2021, I did set up a gig where I can do consulting and
-                                development contract work still in the private sector. I find that
-                                it is nice to meet challenges that have market value and it's nice
-                                to get paid well. I had so far done some machine learning modeling
-                                and some highly convoluted data-collection. One of the drawbacks
-                                next to these great private sector benefits is that one can't really
-                                go into much detail.</p>
+                                <p>I use</p>
+                                <ul>
+                                        <li> Python, Rust, Svelte to build </li>
+                                        <li> Neovim, Linux, LeftWM, split keyboards </li>
+                                        <li> AI mostly from the command line, selectively but
+                                appreciatively </li>
+                                </ul>
+                                <p>I like</p>
+                                <ul>
+                                        <li> Knowledge management </li>
+                                        <li> Health and longevity </li>
+                                        <li> Football, D&amp;D, StarCraft, chess </li>
+                                        <li> Film and popular culture </li>
+                                </ul>
                         </body>
                         <children>
-                                <child ref="lidl" />
-                                <child ref="football" />
-                                <child ref="contributions" />
-                                <child ref="krtk" />
+                                <child ref="work-environment" />
+                                <child ref="play" />
+                                <child ref="culture" />
                         </children>
                 </node>
                 <node id="rankless">
@@ -143,14 +106,37 @@
                         </body>
                         <children>
                                 <child ref="ccl" />
-                                <child ref="i-use" />
+                        </children>
+                </node>
+                <node id="data-at-scale">
+                        <title>Data at Scale</title>
+                        <body>
+                                <h4>Retail Data Science</h4>
+                                <p><b>2018</b>-<b>2021</b> I worked at
+                                Lidl as a data scientist. It was interesting, challenging, paid
+                                well, I learned a lot. It was a demanding environment with high
+                                employee turnover but still high productivity. After a few years, I
+                                got tired of not being able to show anything I've done to anybody,
+                                and not owning any of the fruits of my labor, so I took a massive
+                                pay cut and moved to academia.</p>
+                                <h4>Freelance</h4>
+                                <p>Since I
+                                primarily work in academia since <b>2021</b>, I did set up a gig
+                                where I can do consulting and development contract work still in the
+                                private sector. I find that it is nice to meet challenges that have
+                                market value and it's nice to get paid well. I had so far done some
+                                machine learning modeling and some highly convoluted
+                                data-collection. One of the drawbacks next to these great private
+                                sector benefits is that one can't really go into much detail.</p>
+                        </body>
+                        <children>
+                                <child ref="retail-ml" />
+                                <child ref="football-ml" />
+                                <child ref="research-infra" />
                         </children>
                 </node>
                 <node id="applets">
-                        <title>Lots of Building</title>
-                        <zoomedBody>
-                                <p>Small projects and contributions</p>
-                        </zoomedBody>
+                        <title>Applets</title>
                         <body>
                                 <p><strong>Libraries</strong> to read/write <a
                                                 href="https://github.com/endremborza/shackleton">
@@ -197,80 +183,67 @@
                                 wood to make a house-like bed for my godson.</p>
                         </body>
                         <children>
-                                <child ref="contributions" />
-                                <child ref="config" />
+                                <child ref="open-source" />
+                                <child ref="my-tools" />
+                                <child ref="sscub-tools" />
                         </children>
                 </node>
-                <node id="ccl">
-                        <title>CCL @ Corvinus</title>
+                <node id="retail-ml">
+                        <title>Retail at Industrial Scale</title>
                         <body>
-                                <p>Started working in 2023 as a Research Data Engineer at <a
-                                                href="https://centerforcollectivelearning.org/">ccl</a>,
-                                a multidisciplinary lab started in Budapest by an EU grant. I help
-                                others publish papers involving complex data pipelines, but mostly I
-                                worked on <a href="https://www.rankless.org/">rankless.org</a> - a
-                                platform for the exploration of scholarly data. I managed to
-                                convince our director that I'd do the whole thing in Rust and Svelte
-                                without any large framework or ready-made tech like react, neo4j, or
-                                even anything SQL.</p>
-                                <p>I also was responsible for setting up
-                                working environments for data heavy computations in research.</p>
+                                <p>Starting in <b>2018</b> at Lidl, we developed machine learning
+                                for demand prediction and algorithms to optimize delivery and
+                                distribution. We were quite successful, a lot of what we did got
+                                scaled up and is being used by Lidl widely. I also got to work with
+                                experienced developers and infra people plus technologies less
+                                frequently used in data science jobs like Kubernetes, Kafka,
+                                Elasticsearch, a <em>lot</em> of CI/CD and so on. </p>
+                                <p>I quit
+                                mostly because I wanted more ownership of my work. It was ruthless,
+                                difficult and great</p>
+                        </body>
+                </node>
+                <node id="football-ml">
+                        <title>Football Analytics</title>
+                        <body>
+                                <p>Worked on ML models and iterative algorithm design for evaluating
+                                team performance, player value and contract terms</p>
+                                <p>Worked on a
+                                few papers, where in some cases complex football was used to draw
+                                parallels with other fields, or just analyzed the behaviour of
+                                referees</p>
+                                <p>I sometimes create small pieces of analysis about
+                                football for myself, I rarely share it but <a
+                                                href="https://bits.borza.cc/pl-fixtures">here</a> is
+                                one about the difficulty of partitions of Premier League fixtures.</p>
                         </body>
                         <children>
-                                <child ref="rankless" />
+                                <child ref="football-fun" />
                         </children>
                 </node>
-                <node id="krtk">
-                        <title>Research Big Data Team</title>
+                <node id="research-infra">
+                        <title>Research Infrastructure</title>
                         <body>
-                                <p>In 2021 I set up a small team called <a
-                                                href="https://sscu-budapest.github.io/">Social
-                                Science Computing Unit Budapest</a> at the Centre for Economic and
-                                Regional Studies. We started to build a comprehensive data science
-                                toolset for scientific research. It slowed down a lot due to a range
-                                of issues, mostly around demand, but we did build a central dataset
-                                and data-project standard/framework named <a
-                                                href="https://github.com/sscu-budapest/datazimmer">
-                                datazimmer</a>.</p>
-                                <p>We also built tools around it like <a
-                                                href="https://github.com/endremborza/colassigner">
-                                colassigner</a> so that we don't use string literals with pandas so
-                                much, <a href="https://github.com/endremborza/parquetranger">
-                                parquetranger</a> to manage - save, load, extend - large datasets in
-                                partitioned parquet files, a task queue orchestrator <a
-                                                href="https://github.com/endremborza/atqo">atqo</a>,
-                                raw data collection manager <a
-                                                href="https://github.com/endremborza/aswan">aswan</a>
-                                - named after a dam, and some python package boilerplate <a
-                                                href="https://github.com/endremborza/branthebuilder">
-                                branthebuilder</a> so that we can start many others.</p>
-                                <p>We also
-                                set up a <em>lot</em> of datasets for research around retail,
-                                weather, job-listings, chess, real-estate, football, news articles,
-                                interconnected wiki-pages, movies, etc. many of them periodically,
-                                automatically updating.</p>
+                                <p>FILL</p>
                         </body>
                         <children>
-                                <child ref="applets" />
-                                <child ref="contributions" />
+                                <child ref="ccl" />
+                                <child ref="sscub-tools" />
+                                <child ref="sscub" />
                         </children>
                 </node>
-                <node id="lidl">
-                        <title>Data Science @ Lidl</title>
+                <node id="my-tools">
+                        <title>My Applets</title>
                         <body>
-                                <p>Starting in 2018, we developed machine learning for demand
-                                prediction and algorithms to optimize delivery and distribution. We
-                                were quite successful, a lot of what we did got scaled up and is
-                                being used by Lidl widely. I also got to work with experienced
-                                developers and infra people plus technologies less frequently used
-                                in data science jobs like Kubernetes, Kafka, Elasticsearch, a <em>
-                                lot</em> of CI/CD and so on. </p>
-                                <p>I quit mostly because I wanted
-                                more ownership of my work. It was ruthless, difficult and great</p>
+                                <p>Small libraries for parallel IO, data handling, and analysis
+                                support. - FILL</p>
                         </body>
+                        <children>
+                                <child ref="work-environment" />
+                        </children>
                 </node>
-                <node id="contributions">
-                        <title>Contributions</title>
+                <node id="open-source">
+                        <title>Open Source</title>
                         <body>
                                 <p>Open-source contributions are a great way to learn, and in many
                                 cases the best way to truly understand a tool is to make yourself be
@@ -296,8 +269,98 @@
                                 really promote any of this.</p>
                         </body>
                 </node>
+                <node id="sscub-tools">
+                        <title>Research Tooling</title>
+                        <body>
+                                <p>In a team I built a central dataset and data-project
+                                standard/framework named <a
+                                                href="https://github.com/sscu-budapest/datazimmer">
+                                datazimmer</a>.</p>
+                                <p>We also built tools around it like <a
+                                                href="https://github.com/endremborza/colassigner">
+                                colassigner</a> so that we don't use string literals with pandas so
+                                much, <a href="https://github.com/endremborza/parquetranger">
+                                parquetranger</a> to manage - save, load, extend - large datasets in
+                                partitioned parquet files, a task queue orchestrator <a
+                                                href="https://github.com/endremborza/atqo">atqo</a>,
+                                raw data collection manager <a
+                                                href="https://github.com/endremborza/aswan">aswan</a>
+                                - named after a dam, and some python package boilerplate <a
+                                                href="https://github.com/endremborza/branthebuilder">
+                                branthebuilder</a> so that we can start many others.</p>
+                        </body>
+                        <children>
+                                <child ref="sscub" />
+                        </children>
+                </node>
+                <node id="papers">
+                        <title>Papers</title>
+                        <body>
+                                <p>Contributions to academic research through data engineering and
+                                scalable analysis. - FILL</p>
+                        </body>
+                </node>
+                <node id="teaching">
+                        <title>Teaching</title>
+                        <body>
+                                <p>Teaching programming and data-heavy methods in small, motivated
+                                settings. - FILL</p>
+                        </body>
+                </node>
+                <node id="ccl">
+                        <title>Center for Collective Learning</title>
+                        <body>
+                                <p>Started working in 2023 as a Research Data Engineer at <a
+                                                href="https://centerforcollectivelearning.org/">ccl</a>,
+                                a multidisciplinary lab started in Budapest by an EU grant. I help
+                                others publish papers involving complex data pipelines, but mostly I
+                                worked on <a href="https://www.rankless.org/">rankless.org</a> - a
+                                platform for the exploration of scholarly data. I managed to
+                                convince our director that I'd do the whole thing in Rust and Svelte
+                                without any large framework or ready-made tech like react, neo4j, or
+                                even anything SQL.</p>
+                                <p>I also was responsible for setting up
+                                working environments for data heavy computations in research.</p>
+                        </body>
+                </node>
+                <node id="sscub">
+                        <title>Social Science Computing</title>
+                        <body>
+                                <p>In 2021 I set up a small team called <a
+                                                href="https://sscu-budapest.github.io/">Social
+                                Science Computing Unit Budapest</a> at the Centre for Economic and
+                                Regional Studies. We started to build a comprehensive data science
+                                toolset for scientific research. It slowed down a lot due to a range
+                                of issues, mostly around demand, but we did build a central dataset
+                                and data-project standard/framework and set up a <em>lot</em> of
+                                datasets for research around retail, weather, job-listings, chess,
+                                real-estate, football, news articles, interconnected wiki-pages,
+                                movies, etc. many of them periodically, automatically updating.</p>
+                        </body>
+                </node>
+                <node id="work-environment">
+                        <title>Work Environment</title>
+                        <body>
+                                <p>I like having everything being derived from code, easily
+                                reproducible. I try keeping everything I need that is necessary to
+                                setup a working environment for myself in one place <a
+                                                href="https://github.com/endremborza/setup">here</a>.
+                                It's not always perfectly up to date and comprehensive, but it
+                                reflects how I work.</p>
+                        </body>
+                </node>
+                <node id="play">
+                        <title>Games &amp; Play</title>
+                        <body>
+                                <p>Structured play that rewards systems thinking. - FILL</p>
+                        </body>
+                        <children>
+                                <child ref="dnd" />
+                                <child ref="football-fun" />
+                        </children>
+                </node>
                 <node id="dnd">
-                        <title>D &amp; D</title>
+                        <title>D&amp;D</title>
                         <body>
                                 <p>I started playing in 2020, and it turned out to be one of my
                                 primary recreational activities.</p>
@@ -312,25 +375,13 @@
                                 but am constantly building and improving my setup. </p>
                         </body>
                 </node>
-                <node id="football">
-                        <title>Football</title>
-                        <body>
-                                <p>Worked on ML models and iterative algorithm design for evaluating
-                                team performance, player value and contract terms</p>
-                                <p>Worked on a
-                                few papers, where in some cases complex football was used to draw
-                                parallels with other fields, or just analyzed the behaviour of
-                                referees</p>
-                                <p>I sometimes create small pieces of analysis about
-                                football for myself, I rarely share it but <a
-                                                href="https://bits.borza.cc/pl-fixtures">here</a> is
-                                one about the difficulty of partitions of Premier League fixtures.</p>
-
+                <node id="football-fun">
+                        <title>Football for Fun</title>
+                        <body><p>Play, like - FILL</p>
                         </body>
-
                 </node>
                 <node id="culture">
-                        <title>Films and Pop Culture</title>
+                        <title>Culture - RENAME</title>
                         <body>
                                 <p>I like writing short reviews from time to time about films,
                                 games, albums as it is great practice in expression. <a
@@ -339,18 +390,6 @@
                                                 href="https://rateyourmusic.com/~endremborza">music</a>is
                                 going a lot slower</p>
                         </body>
-                </node>
-                <node id="config">
-                        <title>Configuration</title>
-                        <body>
-                                <p>I like having everything being derived from code, easily
-                                reproducible. I try keeping everything I need that is necessary to
-                                setup a working environment for myself in one place <a
-                                                href="https://github.com/endremborza/setup">here</a>,
-                                but I fall behind in commiting everything nicely</p>
-
-                        </body>
-
                 </node>
         </nodes>
 </site>
