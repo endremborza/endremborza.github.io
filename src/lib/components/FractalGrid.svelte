@@ -16,8 +16,9 @@
 	import { crossfade } from 'svelte/transition';
 
 	export let tileContents: TileContents;
+	export let rootId: string;
 	export let n = 5;
-	export let gap = 10;
+	export let gap = 8;
 
 	// const RATIO = (Math.sqrt(5) + 1) / 2;
 	//1.61803398875
@@ -25,6 +26,7 @@
 	let fibs = getFibs(n);
 	function handleClick(sc: ShownContent) {
 		let tc = tileContents[sc.id];
+		if (tc == undefined) return;
 		const newShow: ShownContent[] = [];
 		fillWithTc(newShow, tc, sc.id);
 		fillWithOld(newShow, shownContent);
@@ -36,11 +38,9 @@
 	//if parent is extra tall / wide ??? - at first just leave space at the end, at some point maybe repetition of component
 	//make it reactive with scrolling, granular interaction only on tile 1, and possibly padding tile
 
-	function getColor(i: number, layout: Layout, fibs: number[]) {
-		return `var(--palette-${i})`;
-		let sumN = fibs.length - 1 + (layout.padLoc != 'none' ? 1 : 0);
-		let rate = i / sumN;
-		return getColorByRate(rate);
+	function getColor(i: number, layout: Layout) {
+		let palI = i % 3;
+		return `var(--palette-${palI})`;
 	}
 	const [send, receive] = crossfade({
 		duration: (d) => Math.sqrt(d * 200),
@@ -63,7 +63,14 @@
 		const out: ShownContent[] = [];
 		for (const [k, tc] of Object.entries(tcs)) {
 			if (out.length > n - 2) break;
-			fillWithTc(out, tc, k);
+			let has = false;
+			for (const o of out) {
+				if (o.id == k) {
+					has = true;
+					break;
+				}
+			}
+			if (!has) fillWithTc(out, tc, k);
 		}
 		fillRestShown(out, n);
 		return out;
@@ -81,9 +88,20 @@
 		}
 	}
 	function fillRestShown(scArr: ShownContent[], n: number) {
+		let hasRoot = false;
+		for (const sc of scArr) {
+			if (sc.id == rootId) {
+				hasRoot = true;
+				break;
+			}
+		}
 		while (scArr.length <= n) {
 			let i = scArr.length;
-			scArr.push({ title: '', body: '', id: `_empty${i}` });
+			if (!hasRoot && i == n) {
+				scArr.push({ title: tileContents[rootId].title, body: '', id: rootId });
+			} else {
+				scArr.push({ title: '', body: '', id: `_empty${i}` });
+			}
 		}
 	}
 	function fillWithOld(scArr: ShownContent[], oldArr: ShownContent[]) {
@@ -100,12 +118,47 @@
 		if (tc.id.startsWith('_') || i == 0) return '';
 		return 'clickable';
 	}
-	function getClamp(tile: Tile) {
-		return Math.min(Math.floor((tile.height - 50) / 50), 10);
+
+	function doesTitleFit(tile: Tile, tc: ShownContent) {
+		if (tile.width < 100) return false;
+		if (tile.height < 30) return false;
+		let inSq = (tile.width - 48) * (tile.height - 48);
+		return inSq / Math.pow(32, 2) > tc.title.length;
+	}
+
+	function getFontSize(tile: Tile, layout: Layout) {
+		let sideMean = (tile.height * 4 + tile.width) / 5;
+		let minFontSize = 7;
+		let maxFontSize = 20;
+		let fontSize = Math.min(Math.floor(Math.max(sideMean * 0.04, minFontSize)), maxFontSize);
+		return { minFontSize, maxFontSize, fontSize };
+	}
+
+	function getTileStyleVars(i: number, layout: Layout, tiles: Tile[], fibs: number[]) {
+		let tile = tiles[i];
+		let { fontSize } = getFontSize(tile, layout);
+		let clamp = i == 0 ? 100 : Math.min(Math.floor((tile.height - 50) / fontSize), 10);
+		let vars = [`--col:${getColor(i, layout)}`, `--clamp: ${clamp}`, `font-size: ${fontSize}px`];
+
+		return vars.join('; ');
+	}
+
+	function getTileClasses(i: number, tc: ShownContent, tiles: Tile[]) {
+		if (tc.id.startsWith('_')) {
+			return 'noheader nocontent';
+		}
+		let tile = tiles[i];
+		let { fontSize, minFontSize } = getFontSize(tile, layout);
+		if (!doesTitleFit(tile, tc)) return 'noheader nocontent';
+		if (fontSize == minFontSize) {
+			return 'headed nocontent';
+		}
+		return 'headed contented';
 	}
 
 	// the 'almost fitters' are a problem
-	// maybe stretch one way a little
+	// maybe stretch one way a little or pad
+	let transMs = 500;
 	let pWidth: number;
 	let pHeight: number;
 	$: innerWidth = pWidth - gap;
@@ -115,9 +168,14 @@
 	$: shownContent = getShownContent(tileContents, n);
 </script>
 
-<div class="container" bind:clientWidth={pWidth} bind:clientHeight={pHeight} style="--gap: {gap}px">
+<div
+	class="container"
+	bind:clientWidth={pWidth}
+	bind:clientHeight={pHeight}
+	style="--gap: {gap}px; --trans: {transMs}ms"
+>
 	{#if pHeight != undefined && pWidth != undefined}
-		{#each shownContent.entries() as [i, tc] (tc.id)}
+		{#each shownContent.slice(0, tiles.length).entries() as [i, tc] (tc.id)}
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<!-- svelte-ignore a11y-no-static-element-interactions -->
 			<div
@@ -126,19 +184,16 @@
 				on:click={() => handleClick(tc)}
 				in:receive={{ key: tc.id }}
 				out:send={{ key: tc.id }}
-				animate:flip={{ duration: 200 }}
+				animate:flip={{ duration: transMs }}
 			>
 				<div
-					class="tile"
-					class:square={tiles[i].width === tiles[i].height}
-					style="--col:{getColor(i, layout, fibs)}"
+					class="tile {getTileClasses(i, tc, tiles)}"
+					style={getTileStyleVars(i, layout, tiles, fibs)}
 				>
-					{#if !tc.id.startsWith('_')}
-						<h2>{tc.title}</h2>
-						<span style="--clamp: {getClamp(tiles[i])}">
-							{@html tc.body}
-						</span>
-					{/if}
+					<h2>{tc.title}</h2>
+					<span>
+						{@html tc.body}
+					</span>
 				</div>
 			</div>
 		{/each}
@@ -167,16 +222,38 @@
 		justify-content: center;
 		align-items: center;
 		box-sizing: border-box;
-		padding: 1.5rem;
 
 		background-color: var(--tile-bg);
-		border-radius: calc(var(--gap) / 0.7);
 		border: solid var(--col) calc(var(--gap) / 2);
+		/* border-radius: calc(var(--gap) * 4); */
 		box-shadow: 0 6px 12px rgba(255, 255, 255, 0.1);
 		transition:
-			transform 0.2s ease-in-out,
-			box-shadow 0.2s ease-in-out,
-			background-color 0.2s ease-in-out;
+			transform var(--trans) ease-in-out,
+			box-shadow var(--trans) ease-in-out,
+			background-color var(--trans) ease-in-out;
+	}
+
+	.tile > h2,
+	span {
+		transition: var(--trans) all;
+	}
+
+	.noheader > h2 {
+		display: none;
+	}
+
+	.nocontent > span {
+		display: none;
+	}
+
+	.contented > h2 {
+		margin: 0 0 0.75em 0;
+		border-bottom: 0.08em solid var(--col);
+		padding-bottom: 0.5em;
+	}
+
+	.headed {
+		padding: min(2em, 1.5rem);
 	}
 
 	.clickable:hover .tile {
@@ -186,22 +263,16 @@
 
 	.tile h2 {
 		width: 100%;
-		margin: 0 0 0.75rem 0;
-		font-size: 2.1rem;
+		font-size: 1.8em;
 		text-align: center;
-		border-bottom: 1px solid var(--col);
-		padding-bottom: 0.5rem;
 	}
 
 	.tile span {
 		width: 100%;
-		font-size: 1.4rem;
-		text-align: left;
-		text-align: center;
 		overflow: hidden;
 		display: -webkit-box;
 		line-clamp: var(--clamp);
 		-webkit-box-orient: vertical;
-		-webkit-line-clamp: var(--clamp); /* Limit to 10 lines */
+		-webkit-line-clamp: var(--clamp);
 	}
 </style>
