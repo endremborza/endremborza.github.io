@@ -15,6 +15,7 @@ export type ShownContent = {
 
 export type Layout = {
 	isLandscape: boolean;
+	isMaxed: boolean;
 	padLoc: 'top' | 'left' | 'none';
 	unit: number;
 	pSize: number;
@@ -23,6 +24,8 @@ export type Layout = {
 
 export type Tile = { top: number; left: number; height: number; width: number };
 export type Direction = 'left' | 'right' | 'up' | 'down';
+
+export const MAX_TILE = 720;
 
 export function getFibs(n: number) {
 	const out = [1, 1];
@@ -52,27 +55,31 @@ export function getLayout(width: number, height: number, fibs: number[]): Layout
 	let n = fibs.length;
 	let smallD = fibs[n - 1];
 	let sumD = smallD + fibs[n - 2];
+	if (width > MAX_TILE * 2 && height > MAX_TILE * sumD / smallD) {
+		return { padLoc: 'none', isMaxed: true, unit: MAX_TILE / smallD, isLandscape: false, pSize: 0 }
+
+	}
+	let isMaxed = false;
 	let upperPadLim = fibs[n - 2];
 	let lowerPadLim = fibs[Math.max(0, n - 4)];
 	let isLandscape = true;
 	if (height <= width * ((smallD + upperPadLim) / sumD)) {
 		if (height >= width * ((smallD + lowerPadLim) / sumD)) {
 			let pSize = height - width * (smallD / sumD);
-			return { unit: width / sumD, isLandscape, padLoc: 'top', pSize };
+			return { unit: width / sumD, isLandscape, padLoc: 'top', pSize, isMaxed };
 		}
 		if (width >= height * ((sumD + lowerPadLim) / smallD)) {
 			let pSize = width - height * (sumD / smallD);
-			return { unit: height / smallD, isLandscape, padLoc: 'left', pSize };
+			return { unit: height / smallD, isLandscape, padLoc: 'left', pSize, isMaxed };
 		}
-		// let heightScaler = height / width / (smallD / sumD);
 	}
 	isLandscape = false;
 	if (width <= (height * (smallD + upperPadLim)) / sumD) {
 		let pSize = height - width * (sumD / smallD);
-		if (pSize > 0) return { unit: width / smallD, isLandscape, padLoc: 'top', pSize };
+		if (pSize > 0) return { unit: width / smallD, isLandscape, padLoc: 'top', pSize, isMaxed };
 	}
 	let pSize = width - height * (smallD / sumD);
-	return { unit: height / sumD, isLandscape, padLoc: 'left', pSize }; //possibly wont fill it out?
+	return { unit: height / sumD, isLandscape, padLoc: 'left', pSize, isMaxed }; //possibly wont fill it out?
 }
 
 export function tilesFromLayout(
@@ -83,69 +90,84 @@ export function tilesFromLayout(
 	gap: number,
 ): Tile[] {
 	const out: Tile[] = [];
-	if (extWidth == undefined) return out;
+	if ((extWidth == undefined) || isNaN(extWidth)) return out;
 	let top = gap / 2;
 	let left = gap / 2;
-	let width = extWidth;
-	let height = extHeight;
+
+	if (layout.isMaxed) {
+		let { topPad, leftPad } = getMaxedShape(extWidth, extHeight, fibs)
+		top = topPad;
+		left = leftPad;
+
+	}
+	let ps = layout.pSize;
+	if (layout.padLoc == 'left') {
+		out.push({ top, left, width: ps, height: extHeight });
+		left += ps;
+	}
+	if (layout.padLoc == 'top') {
+		out.push({ top, left, width: extWidth, height: ps });
+		top += ps;
+	}
+
+	let dirInd = 0;
+	if (layout.isLandscape) {
+		dirInd = 3
+		top += fibs[fibs.length - 1] * layout.unit;
+	}
+	fillTiles(out, fibs, left, top, dirInd, layout.unit)
+	if (layout.isMaxed) {
+		let { height, width, topPad, leftPad } = getMaxedShape(extWidth, extHeight, fibs)
+		let left = width + leftPad;
+		let top = height + topPad;
+		fillTiles(out, fibs, left, top, 2, layout.unit)
+
+	}
+	out.sort((l, r) => Math.min(r.height, r.width) - Math.min(l.height, l.width))
+	return out;
+}
+
+function getMaxedShape(extWidth: number, extHeight: number, fibs: number[]) {
+	let n = fibs.length;
+	let shortSide = fibs[n - 1]
+	let longSide = shortSide + fibs[n - 2]
+	let height = MAX_TILE * longSide / shortSide;
+	let width = MAX_TILE * 2;
+	return { height, width, topPad: (extHeight - height) / 2, leftPad: (extWidth - width) / 2 }
+
+}
+
+
+const DIRS: Direction[] = ['right', 'down', 'left', 'up'];
+
+function fillTiles(out: Tile[], fibs: number[], left: number, top: number, dirInd: number, unit: number) {
+
+
 	function addTile(sizeW: number, sizeH: number, d: Direction) {
 		let size = { width: sizeW, height: sizeH };
 		if (d == 'right') {
 			out.push({ top, left, ...size });
 			left += sizeW;
-			width -= sizeW;
 			top += sizeH;
 		} else if (d == 'down') {
 			left -= sizeW;
 			out.push({ top, left, ...size });
 			top += sizeH;
-			height -= sizeH;
 		} else if (d == 'left') {
 			top -= sizeH;
 			left -= sizeW;
 			out.push({ top, left, ...size });
-			width -= sizeW;
 		} else if (d == 'up') {
 			top -= sizeH;
 			out.push({ top, left, ...size });
-			height -= sizeH;
 			left += sizeW;
 		}
 	}
-	let ps = layout.pSize;
-	if (layout.padLoc == 'left') {
-		out.push({ top, left, width: ps, height });
-		left += ps;
-		width -= ps;
-	}
-	if (layout.padLoc == 'top') {
-		out.push({ top, left, width, height: ps });
-		top += ps;
-		height -= ps;
-	}
-	const DIRS: Direction[] = ['right', 'down', 'left', 'up'];
-	let dirInd = 0;
 	for (let i = 0; i < fibs.length; i++) {
-		let fibU = fibs[fibs.length - 1 - i] * layout.unit;
-		if (i == 0) {
-			let size = { height: fibU, width: fibU };
-			out.push({ top, left, ...size });
-			left += fibU;
-			if (layout.isLandscape) {
-				width -= fibU;
-			} else {
-				top += fibU;
-				height -= fibU;
-			}
-		} else {
-			addTile(fibU, fibU, DIRS[dirInd]);
-		}
-		if (!layout.isLandscape || i > 0) {
-			dirInd = (dirInd + 1) % DIRS.length;
-		}
+		let fibU = fibs[fibs.length - 1 - i] * unit;
+		addTile(fibU, fibU, DIRS[dirInd]);
+		dirInd = (dirInd + 1) % DIRS.length;
 	}
-	out.sort((l, r) => Math.min(r.height, r.width) - Math.min(l.height, l.width))
-	return out;
 }
 
 
