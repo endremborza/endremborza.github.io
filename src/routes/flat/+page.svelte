@@ -57,12 +57,12 @@
 </script>
 
 <svelte:head>
-	<title>Flat View</title>
+	<title>endremborza</title>
 </svelte:head>
 
-<div class="container">
+<div class="container" style="--fancy-disp: none">
 	{#each flatNodes as { node, depth }}
-		<div class="node" style="margin-left: {depth * 1.5}rem;">
+		<div class="node" style="margin-left: min({depth * 1.5}em, {depth * 3.2}vmin);">
 			<h2>{node.title}</h2>
 			<div>{@html node.body}</div>
 		</div>
@@ -71,14 +71,14 @@
 
 <style>
 	.container {
-		padding: 2rem;
+		padding: 1.5em;
 		max-width: 900px;
 		margin: 0 auto;
-		font-family: sans-serif;
+		font-size: min(4vmin, 18px);
 	}
 	.node {
-		margin-bottom: 2rem;
+		margin-bottom: 2em;
 		border-left: 1px solid var(--palette-1);
-		padding-left: 1.5rem;
+		padding-left: min(1.5em, 3vmin);
 	}
 </style>
