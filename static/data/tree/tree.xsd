@@ -66,7 +66,15 @@
     </xs:complexContent>
   </xs:complexType>
 
-  <xs:element name="p" type="inlineContent" />
+  <xs:element name="p" type="pType" />
+  <xs:complexType name="pType">
+    <xs:complexContent>
+      <xs:extension base="inlineContent">
+        <xs:attribute name="class" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
   <xs:element name="li" type="inlineContent" />
 
   <xs:element name="h2" type="inlineContent" />

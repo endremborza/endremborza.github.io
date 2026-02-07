@@ -6,6 +6,9 @@
                         <body>
                                 <p><b>Endre Borza</b>. made this page to collect and structure the
                                 work I've done, and some things I like.</p>
+                                <p class="fancy-layout">It
+                                is set up in this experimental layout, you can flatten it <a
+                                                href="./flat">here</a>.</p>
                         </body>
                         <children>
                                 <child ref="artifacts" />
@@ -400,8 +403,8 @@
                                 games, albums as it is great practice in expression. <a
                                                 href="https://www.imdb.com/user/ur23979373/reviews">Film
                                 reviews</a> are public on imdb, <a
-                                                href="https://rateyourmusic.com/~endremborza">music</a>is
-                                going a lot slower</p>
+                                                href="https://rateyourmusic.com/~endremborza">music</a>
+                                is going a lot slower</p>
                         </body>
                 </node>
 
