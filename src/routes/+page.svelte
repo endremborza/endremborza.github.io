@@ -6,7 +6,7 @@
 </script>
 
 <svelte:head>
-	<title>Endre Mark Borza</title>
+	<title>endremborza</title>
 </svelte:head>
 
 <div>
