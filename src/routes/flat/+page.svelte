@@ -34,12 +34,10 @@
 			return;
 		}
 		visited.add(nodeId);
-
 		const node = nodeMap.get(nodeId);
 		if (!node) {
 			return;
 		}
-
 		const depth = minDepths.get(nodeId) ?? 0;
 		flatNodes.push({ node, depth });
 
