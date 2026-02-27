@@ -5,7 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
-		"prebuild": "python scripts/fetch_github_data.py && python scripts/convert_tree_xml.py",
+		"prebuild": "make generate",
 		"build": "vite build",
 		"deploy": "gh-pages -d build --dotfiles --nojekyll",
 		"preview": "vite preview",
@@ -28,7 +28,6 @@
 		"vite": "^7.2.6"
 	},
 	"dependencies": {
-		"chysame": "file:../../libs/chysame",
-		"xml-js": "^1.6.11"
+		"chysame": "file:../../libs/chysame"
 	}
 }
