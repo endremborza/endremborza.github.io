@@ -1,22 +1,26 @@
+---@type Career
 return {
   work = {
     {
       start = 2023,
       role = "Research Data Engineer",
       org = "Corvinus University - Center for Collective Learning",
-      description = [[Built an academic data exploration platform (\small{\url{https://www.rankless.org}}) and data pipelines for various research projects at the Center for Collective Learning]],
+      description =
+      "Built an academic data exploration platform and data pipelines for various research projects at the Center for Collective Learning",
     },
     {
       start = 2022,
       role = "Data Solutions Freelancer",
       org = "",
-      description = "Consulting and architecture work on data pipelines and ML models for sports consultancy, policy research, academic research and such",
+      description =
+      "Consulting and architecture work on data pipelines and ML models for sports consultancy, policy research, academic research and such",
     },
     {
       start = 2021,
       finish = 2024,
       role = "Data Team Lead",
-      org = [[\href{https://sscu-budapest.github.io/}{sscub} - Centre for Economic and Regional Studies]],
+      org = "sscub - Centre for Economic and Regional Studies",
+      org_url = "https://sscu-budapest.github.io/",
       description = "Data intensive research software development",
     },
     {
@@ -30,14 +34,17 @@ return {
       start = 2018,
       finish = 2021,
       role = "Data Scientist",
-      org = [[Lidl Stiftung \& Co. Center of Excellence]],
-      description = "Developing scalable and generalizable machine learning products for demand prediction, delivery optimization and performance evaluation",
+      org = "Lidl Stiftung & Co. Center of Excellence",
+      description =
+      "Developing scalable and generalizable machine learning products for demand prediction, delivery optimization and performance evaluation",
     },
     {
       start = 2015,
       role = "Course Instructor",
       org = "Rajk College for Advanced Studies",
-      description = [[\small{Applied Algorithm Design for Data Applications (3 semesters), Programming and Algorithm Design (6 semesters), Statistical Methods for Causal Inference (1 semester), Introduction to Formal Logic}]],
+      description =
+      "Applied Algorithm Design for Data Applications (5 semesters), Programming and Algorithm Design (6 semesters), Statistical Methods for Causal Inference (1 semester), Introduction to Formal Logic",
+      description_small = true,
     },
   },
   education = {
@@ -53,14 +60,16 @@ return {
       finish = 2018,
       institution = "Rajk College for Advanced Studies",
       degree = "",
-      courses = "Machine Learning, Auction Theory, Network Science, Data Parsing, Business Theory, Cooperation Theory, Game Theory, Behavioral Economics, Sports Management, Cognitive Psychology, Gender Studies,  etc.",
+      courses =
+      "Machine Learning, Auction Theory, Network Science, Data Parsing, Business Theory, Cooperation Theory, Game Theory, Behavioral Economics, Sports Management, Cognitive Psychology, Gender Studies,  etc.",
     },
     {
       start = 2011,
       finish = 2016,
-      institution = [[E\"{o}tv\"{o}s Lor\'{a}nd University]],
+      institution = "Eötvös Loránd University",
       degree = "BA in Economics",
-      degree2 = [[BSc in Informatics - \small{specialization in modeling ('14-'16,  did not graduate)}]],
+      degree2 = "BSc in Informatics",
+      degree2_note = "specialization in modeling ('14-'16,  did not graduate)",
       thesis = "Generalization of Matching Mechanisms",
     },
   },
@@ -75,7 +84,8 @@ return {
       year = 2022,
       name = "Permanent Professor of Rajk College",
       org = "Rajk College",
-      description = "Given by Rajk's student community to course instructors to recognize pedagogical and professional excellence",
+      description =
+      "Given by Rajk's student community to course instructors to recognize pedagogical and professional excellence",
     },
     {
       year = 2018,
