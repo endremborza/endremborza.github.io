@@ -17,7 +17,7 @@ return {
     },
     {
       start = 2021,
-      finish = 2024,
+      finish = 2023,
       role = "Data Team Lead",
       org = "sscub - Centre for Economic and Regional Studies",
       org_url = "https://sscu-budapest.github.io/",
