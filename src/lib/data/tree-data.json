@@ -2,7 +2,7 @@
   {
     "id": "home",
     "title": "I am",
-    "body": "<p><b>Endre Borza</b>. made this page to collect and structure the\n                                work I've done, and some things I like.</p>\n                                <p class=\"fancy-layout\">It\n                                is set up in this experimental layout, you can flatten it <a href=\"./flat\">here</a>.</p>\n                        ",
+    "body": "<p><b>Endre Borza</b>. made this page to collect and structure the work I&#x27;ve done, and some things I like.</p>\n<p class=\"fancy-layout\">It is set up in this experimental layout, you can flatten it <a href=\"./flat\">here</a>.</p>",
     "children": [
       "artifacts",
       "academia",
@@ -12,7 +12,7 @@
   {
     "id": "artifacts",
     "title": "Artifacts",
-    "body": "<p>I built</p>\n                                <ul>\n                                        <li><a href=\"https://www.rankless.org/\">Rankless</a>, an\n                                interactive platform for exploring massive scholarly datasets</li>\n                                        <li>Machine learning and optimization systems for retail\n                                logistics and football analytics</li>\n                                        <li>Reusable tools and infrastructure that make my work\n                                easier</li>\n                                </ul>\n                        ",
+    "body": "<p>I built</p>\n<ul><li><a href=\"https://www.rankless.org/\">Rankless</a>, an interactive platform for exploring massive scholarly datasets</li><li>Machine learning and optimization systems for retail logistics and football analytics</li><li>Reusable tools and infrastructure that make my work easier</li></ul>",
     "children": [
       "rankless",
       "data-at-scale",
@@ -22,7 +22,7 @@
   {
     "id": "rankless",
     "title": "Rankless",
-    "body": "<p>Originally conceived by Cesar Hidalgo at <a href=\"https://centerforcollectivelearning.org/\">CCL</a>\n                                , <a href=\"https://www.rankless.org/\">Rankless</a> was a great\n                                engineering challenge. It processes over 3 billion citations among\n                                300 million papers and responds to complex interactive queries\n                                almost instantly.</p>\n                                <p>This required heavy optimization throughout:\n                                a specialized Rust backend with multi-stage compilation aligned to\n                                data shape and size, and a Svelte frontend with hand-rolled SVGs and\n                                practically no dependencies.</p>\n                        ",
+    "body": "<p>Originally conceived by Cesar Hidalgo at <a href=\"https://centerforcollectivelearning.org/\">CCL</a>, <a href=\"https://www.rankless.org/\">Rankless</a> was a great engineering challenge. It processes over 3 billion citations among 300 million papers and responds to complex interactive queries almost instantly.</p>\n<p>This required heavy optimization throughout: a specialized Rust backend with multi-stage compilation aligned to data shape and size, and a Svelte frontend with hand-rolled SVGs and practically no dependencies.</p>",
     "children": [
       "ccl"
     ]
@@ -30,7 +30,7 @@
   {
     "id": "data-at-scale",
     "title": "Data at Scale",
-    "body": "<h4>Retail Data Science</h4>\n                                <p><b>2018</b>-<b>2021</b> I worked at\n                                Lidl as a data scientist. It was demanding, fast-paced, and\n                                productive. We built machine learning systems for demand prediction\n                                and optimization that were rolled out widely.</p>\n                                <h4>Freelance &amp;\n                                Contract Work</h4>\n                                <p> Since <b>2021</b> I occasionally take on\n                                consulting and development work in the private sector, or even some\n                                research projects. These are usually solutions to data engineering,\n                                data collection, machine learning or optimization problems.</p>\n                        ",
+    "body": "<h4>Retail Data Science</h4>\n<p><b>2018</b>-<b>2021</b> I worked at Lidl as a data scientist. It was demanding, fast-paced, and productive. We built machine learning systems for demand prediction and optimization that were rolled out widely.</p>\n<h4>Freelance &amp; Contract Work</h4>\n<p>Since <b>2021</b> I occasionally take on consulting and development work in the private sector, or even some research projects. These are usually solutions to data engineering, data collection, machine learning or optimization problems.</p>",
     "children": [
       "retail-ml",
       "football-ml",
@@ -40,13 +40,13 @@
   {
     "id": "retail-ml",
     "title": "Retail at Industrial Scale",
-    "body": "<p>Starting in <b>2018</b> at Lidl we developed machine learning\n                                models for demand forecasting and algorithms for delivery and\n                                distribution optimization.</p>\n                                <p>The work scaled well and as far as\n                                I know is still in use. I also got deep exposure to production\n                                infrastructure: Kubernetes, Kafka, Elasticsearch, and a lot of\n                                CI/CD.</p>\n                                <p>It was ruthless, difficult, and formative. In a small\n                                team, working mostly with developers, and trying to integrate the\n                                result of our work into the fine-tuned processes of the massive\n                                global behemoth that is Lidl.</p>\n                                <p>I eventually left because I\n                                wanted more ownership of my work and the ability to show and reuse\n                                what I built.</p>\n                        ",
+    "body": "<p>Starting in <b>2018</b> at Lidl we developed machine learning models for demand forecasting and algorithms for delivery and distribution optimization.</p>\n<p>The work scaled well and as far as I know is still in use. I also got deep exposure to production infrastructure: Kubernetes, Kafka, Elasticsearch, and a lot of CI/CD.</p>\n<p>It was ruthless, difficult, and formative. In a small team, working mostly with developers, and trying to integrate the result of our work into the fine-tuned processes of the massive global behemoth that is Lidl.</p>\n<p>I eventually left because I wanted more ownership of my work and the ability to show and reuse what I built.</p>",
     "children": []
   },
   {
     "id": "football-ml",
     "title": "Football Analytics",
-    "body": "<p>Worked on ML models and iterative algorithm design for evaluating\n                                team performance, player value, and contract terms.</p>\n                                <p>Some of\n                                this work fed into academic papers, sometimes using football as a\n                                parallel system to study incentives or behavior (e.g. referees).</p>\n                                <p>I\n                                also occasionally do small analyses for myself, like <a href=\"https://bits.borza.cc/pl-fixtures\">this one</a>\n                                on Premier League fixture difficulty.</p>\n                        ",
+    "body": "<p>Worked on ML models and iterative algorithm design for evaluating team performance, player value, and contract terms.</p>\n<p>Some of this work fed into academic papers, sometimes using football as a parallel system to study incentives or behavior (e.g. referees).</p>\n<p>I also occasionally do small analyses for myself, like <a href=\"https://bits.borza.cc/pl-fixtures\">this one</a> on Premier League fixture difficulty.</p>",
     "children": [
       "football-fun"
     ]
@@ -54,7 +54,7 @@
   {
     "id": "applets",
     "title": "Practical Software",
-    "body": "<p>Tools I built to solve concrete problems. Some small, opinionated\n                                personal tools, reusable research infrastructure, and open-source\n                                work in established ecosystems. </p>\n                        ",
+    "body": "<p>Tools I built to solve concrete problems. Some small, opinionated personal tools, reusable research infrastructure, and open-source work in established ecosystems.</p>",
     "children": [
       "my-tools",
       "sscub-tools",
@@ -64,7 +64,7 @@
   {
     "id": "my-tools",
     "title": "Personal Tools",
-    "body": "<p>Small libraries and tools for parallel IO, dataset handling,\n                                entity resolution, to make repeated patterns explicit and reusable.</p>\n                                <p><strong>\n                                Libraries</strong> to read/write <a href=\"https://github.com/endremborza/shackleton\">\n                                parquet</a> and <a href=\"https://github.com/endremborza/partcsv\">csv</a>\n                                in a parallel and efficient way in python. Entity coreference in\n                                both <a href=\"https://github.com/endremborza/encoref\">python</a> and <a href=\"https://github.com/endremborza/Encoref.jl\">\n                                Julia</a>, a <a href=\"https://github.com/endremborza/BigO.jl\">Julia\n                                library</a> for complexity plotting and estimation.</p>\n                                <p><strong>\n                                Apps</strong> like <a href=\"https://github.com/endremborza/scimagojr-search-engine\">a\n                                browser extension</a> to search for a scientific journal with one\n                                right-click (and then a left-click), a small <a href=\"https://github.com/endremborza/typegame\">dash\n                                app</a> for creating quizzes for programming education, docker-based\n                                comparison tool of programming languages, or implementations of\n                                students. Also a bunch of apps for <a href=\"https://rajk.eu\">Rajk</a> college, where I\n                                spent a wonderful 7 years and got to make tools for resolving\n                                preference-based <a href=\"https://github.com/rajk-apps/riki\">course\n                                applications</a>, uploading coursework, <a href=\"https://github.com/rajk-apps/rajksimple\">credit-card\n                                processing</a>, teaching aids for <a href=\"https://github.com/endremborza/teach\">\n                                presenting</a> or <a href=\"https://jkg-evaluators.readthedocs.io/en/latest/index.html\">\n                                evaluation</a>, tinder-like quick evaluation tools for collective\n                                decision making and many failed others. I tried vanilla javascript\n                                with google sheets backends, raw PHP 5, and eventually Django. Most\n                                of them got the job done at the time, but the biggest benefit was\n                                getting my hands dirty, even before working together with a group of\n                                senior developers later.</p>\n                                <p>These are mostly some sort of\n                                software that all become stale as versions move on. <strong>Simple\n                                tools</strong>, are fun because they can just be <em>done</em>, like\n                                an interactive <a href=\"https://endremborza.github.io/funtum-computing/\">\n                                article</a> explaining quantum states and gates with hand-rolled 3d\n                                SVGs of Bloch-spheres, or a <a href=\"https://endremborza.github.io/static-snippets/box\">\n                                tool</a> that helps my friend figure out how to cut a few pieces of\n                                wood to make a house-like bed for my godson.</p>\n                        ",
+    "body": "<p>Small libraries and tools for parallel IO, dataset handling, entity resolution, to make repeated patterns explicit and reusable.</p>\n<p><strong>Libraries</strong> to read/write <a href=\"https://github.com/endremborza/shackleton\">parquet</a> and <a href=\"https://github.com/endremborza/partcsv\">csv</a> in a parallel and efficient way in python. Entity coreference in both <a href=\"https://github.com/endremborza/encoref\">python</a> and <a href=\"https://github.com/endremborza/Encoref.jl\">Julia</a>, a <a href=\"https://github.com/endremborza/BigO.jl\">Julia library</a> for complexity plotting and estimation.</p>\n<p><strong>Apps</strong> like <a href=\"https://github.com/endremborza/scimagojr-search-engine\">a browser extension</a> to search for a scientific journal with one right-click (and then a left-click), a small <a href=\"https://github.com/endremborza/typegame\">dash app</a> for creating quizzes for programming education, docker-based comparison tool of programming languages, or implementations of students. Also a bunch of apps for <a href=\"https://rajk.eu\">Rajk</a> college, where I spent a wonderful 7 years and got to make tools for resolving preference-based <a href=\"https://github.com/rajk-apps/riki\">course applications</a>, uploading coursework, <a href=\"https://github.com/rajk-apps/rajksimple\">credit-card processing</a>, teaching aids for <a href=\"https://github.com/endremborza/teach\">presenting</a> or <a href=\"https://jkg-evaluators.readthedocs.io/en/latest/index.html\">evaluation</a>, tinder-like quick evaluation tools for collective decision making and many failed others. I tried vanilla javascript with google sheets backends, raw PHP 5, and eventually Django. Most of them got the job done at the time, but the biggest benefit was getting my hands dirty, even before working together with a group of senior developers later.</p>\n<p>These are mostly some sort of software that all become stale as versions move on. <strong>Simple tools</strong>, are fun because they can just be <em>done</em>, like an interactive <a href=\"https://endremborza.github.io/funtum-computing/\">article</a> explaining quantum states and gates with hand-rolled 3d SVGs of Bloch-spheres, or a <a href=\"https://endremborza.github.io/static-snippets/box\">tool</a> that helps my friend figure out how to cut a few pieces of wood to make a house-like bed for my godson.</p>",
     "children": [
       "work-environment"
     ]
@@ -72,13 +72,13 @@
   {
     "id": "open-source",
     "title": "Open Source",
-    "body": "<p>I used to contribute more actively to open-source projects as a\n                                way to learn tools from the inside.</p>\n                                <p>Contributions include <a href=\"https://github.com/pandas-dev/pandas/commits?author=endremborza\">\n                                pandas</a>, <a href=\"https://github.com/dask/dask/commits?author=endremborza\">\n                                dask</a>, <a href=\"https://github.com/JuliaLang/julia/commits?author=endremborza\">\n                                Julia</a>, <a href=\"https://github.com/fsspec/filesystem_spec/commits?author=endremborza\">\n                                fsspec</a>, and <a href=\"https://github.com/iterative/dvc/commits?author=endremborza\">\n                                dvc</a>.</p>\n                                <p><a href=\"https://github.com/endremborza/sqlmermaid\">A\n                                project of mine</a> that visualizes SQL schemas with python even got\n                                a random external PR once. I merged it. It felt great.</p>\n                        ",
+    "body": "<p>I used to contribute more actively to open-source projects as a way to learn tools from the inside.</p>\n<p>Contributions include <a href=\"https://github.com/pandas-dev/pandas/commits?author=endremborza\">pandas</a>, <a href=\"https://github.com/dask/dask/commits?author=endremborza\">dask</a>, <a href=\"https://github.com/JuliaLang/julia/commits?author=endremborza\">Julia</a>, <a href=\"https://github.com/fsspec/filesystem_spec/commits?author=endremborza\">fsspec</a>, and <a href=\"https://github.com/iterative/dvc/commits?author=endremborza\">dvc</a>.</p>\n<p><a href=\"https://github.com/endremborza/sqlmermaid\">A project of mine</a> that visualizes SQL schemas with python even got a random external PR once. I merged it. It felt great.</p>",
     "children": []
   },
   {
     "id": "sscub-tools",
     "title": "Research Tooling",
-    "body": "<p>As part of SSCUB we built a shared data framework called <a href=\"https://github.com/sscu-budapest/datazimmer\">\n                                datazimmer</a>. </p>\n                                <p>We also built tools around it like <a href=\"https://github.com/endremborza/colassigner\">\n                                colassigner</a> so that we don't use string literals with pandas so\n                                much, <a href=\"https://github.com/endremborza/parquetranger\">\n                                parquetranger</a> to manage - save, load, extend - large datasets in\n                                partitioned parquet files, a task queue orchestrator <a href=\"https://github.com/endremborza/atqo\">atqo</a>,\n                                raw data collection manager <a href=\"https://github.com/endremborza/aswan\">aswan</a>\n                                - named after a dam, and some python package <a href=\"https://github.com/endremborza/branthebuilder\">\n                                boilerplate </a> so that we can start many others.</p>\n                                <p>These were\n                                designed for multi-project, multi-year research workflows.</p>\n                        ",
+    "body": "<p>As part of SSCUB we built a shared data framework called <a href=\"https://github.com/sscu-budapest/datazimmer\">datazimmer</a>.</p>\n<p>We also built tools around it like <a href=\"https://github.com/endremborza/colassigner\">colassigner</a> so that we don&#x27;t use string literals with pandas so much, <a href=\"https://github.com/endremborza/parquetranger\">parquetranger</a> to manage - save, load, extend - large datasets in partitioned parquet files, a task queue orchestrator <a href=\"https://github.com/endremborza/atqo\">atqo</a>, raw data collection manager <a href=\"https://github.com/endremborza/aswan\">aswan</a> - named after a dam, and some python package <a href=\"https://github.com/endremborza/branthebuilder\">boilerplate</a> so that we can start many others.</p>\n<p>These were designed for multi-project, multi-year research workflows.</p>",
     "children": [
       "sscub"
     ]
@@ -86,7 +86,7 @@
   {
     "id": "academia",
     "title": "Research & Teaching",
-    "body": "<p>Since <b>2014</b> I've worked on the data side of some papers and\n                                one <a href=\"https://gabors-data-analysis.com/\">book</a>. Over time\n                                my role grew from acknowledgments to full authorship.</p>\n                                <p>The\n                                topics vary widely, but the common thread is large, complex datasets\n                                that require efficient processing or creative analysis. </p>\n                                <p>In\n                                parallel, since <b>2015</b> I've been teaching programming,\n                                data-heavy methods, and some machine learning mostly in small,\n                                motivated settings.</p>\n                        ",
+    "body": "<p>Since <b>2014</b> I&#x27;ve worked on the data side of some papers and one <a href=\"https://gabors-data-analysis.com/\">book</a>. Over time my role grew from acknowledgments to full authorship.</p>\n<p>The topics vary widely, but the common thread is large, complex datasets that require efficient processing or creative analysis.</p>\n<p>In parallel, since <b>2015</b> I&#x27;ve been teaching programming, data-heavy methods, and some machine learning mostly in small, motivated settings.</p>",
     "children": [
       "papers",
       "teaching",
@@ -96,19 +96,19 @@
   {
     "id": "papers",
     "title": "Papers",
-    "body": "<p>I mostly contribute through data engineering, pipeline design,\n                                and scalable analysis.</p>\n                                <p>The work spans experimental economics,\n                                social science, and applied data analysis. <a href=\"https://scholar.google.com/citations?user=FzM5hAUAAAAJ&amp;hl=en&amp;oi=ao\">\n                                Google</a> collects the ones where I get author credit neatly.</p>\n                        ",
+    "body": "<p>I mostly contribute through data engineering, pipeline design, and scalable analysis.</p>\n<p>The work spans experimental economics, social science, and applied data analysis. <a href=\"https://scholar.google.com/citations?user=FzM5hAUAAAAJ&amp;hl=en&amp;oi=ao\">Google</a> collects the ones where I get author credit neatly.</p>",
     "children": []
   },
   {
     "id": "teaching",
     "title": "Teaching",
-    "body": "<p>I started teaching in <b>2015</b> at <a href=\"https://rajk.eu\">Rajk College</a>.</p>\n                                <p>Courses\n                                include programming, algorithm design, data processing, and causal\n                                inference. I also guest lecture in machine learning and network\n                                science. Sometimes at other institutions</p>\n                                <p>I enjoy teaching a\n                                lot, especially in small classes with motivated students.</p>\n                        ",
+    "body": "<p>I started teaching in <b>2015</b> at <a href=\"https://rajk.eu\">Rajk College</a>.</p>\n<p>Courses include programming, algorithm design, data processing, and causal inference. I also guest lecture in machine learning and network science. Sometimes at other institutions</p>\n<p>I enjoy teaching a lot, especially in small classes with motivated students.</p>",
     "children": []
   },
   {
     "id": "research-infra",
     "title": "Research Infrastructure",
-    "body": "<p>Much of my academic work is about building shared infrastructure\n                                that makes complex, data-heavy research possible.</p>\n                        ",
+    "body": "<p>Much of my academic work is about building shared infrastructure that makes complex, data-heavy research possible.</p>",
     "children": [
       "ccl",
       "sscub-tools",
@@ -118,7 +118,7 @@
   {
     "id": "ccl",
     "title": "Center for Collective Learning",
-    "body": "<p>Since <b>2023</b> I've worked as a Research Data Engineer at <a href=\"https://centerforcollectivelearning.org/\">CCL</a>\n                                .</p>\n                                <p>I support research with complex data pipelines but mainly\n                                built <a href=\"https://www.rankless.org/\">Rankless</a>.</p>\n                                <p>I also\n                                set up environments for large-scale computation.</p>\n                        ",
+    "body": "<p>Since <b>2023</b> I&#x27;ve worked as a Research Data Engineer at <a href=\"https://centerforcollectivelearning.org/\">CCL</a>.</p>\n<p>I support research with complex data pipelines but mainly built <a href=\"https://www.rankless.org/\">Rankless</a>.</p>\n<p>I also set up environments for large-scale computation.</p>",
     "children": [
       "rankless"
     ]
@@ -126,13 +126,13 @@
   {
     "id": "sscub",
     "title": "Social Science Computing",
-    "body": "<p>In 2021 I was tasked with setting up some \"Big Data Capabilities\"\n                                at <a href=\"https://krtk.elte.hu/en\">the Centre for Economic and\n                                Regional Studies</a>, so I founded the <a href=\"https://sscu-budapest.github.io/\">Social\n                                Science Computing Unit</a> there.</p>\n                                <p>We built shared datasets,\n                                standards, and tooling for research across domains like retail,\n                                weather, football, news, chess, and real estate.</p>\n                                <p>The Centre\n                                went through a lot of institutional and some personnel changes, and\n                                eventually demand for complex data intensive tasks fizzled out, and\n                                a lot of what did occur progressed slowly.</p>\n                        ",
+    "body": "<p>In 2021 I was tasked with setting up some &quot;Big Data Capabilities&quot; at <a href=\"https://krtk.elte.hu/en\">the Centre for Economic and Regional Studies</a>, so I founded the <a href=\"https://sscu-budapest.github.io/\">Social Science Computing Unit</a> there.</p>\n<p>We built shared datasets, standards, and tooling for research across domains like retail, weather, football, news, chess, and real estate.</p>\n<p>The Centre went through a lot of institutional and some personnel changes, and eventually demand for complex data intensive tasks fizzled out, and a lot of what did occur progressed slowly.</p>",
     "children": []
   },
   {
     "id": "tools-tastes",
     "title": "Tools & Tastes",
-    "body": "<p>I use</p>\n                                <ul>\n                                        <li> Python, Rust, Svelte to build </li>\n                                        <li> Neovim, Linux, LeftWM and a split keyboard for comfort </li>\n                                        <li> AI mostly from the command line, selectively but\n                                appreciatively </li>\n                                </ul>\n                                <p>I'm\n                                interested in health and longevity and can spend a lot of time\n                                optimizing my knowledge management and living space. I also like to\n                                do at least one seriously physically challenging thing every year.</p>\n                        ",
+    "body": "<p>I use</p>\n<ul><li>Python, Rust, Svelte to build</li><li>Neovim, Linux, LeftWM and a split keyboard for comfort</li><li>AI mostly from the command line, selectively but appreciatively</li></ul>\n<p>I&#x27;m interested in health and longevity and can spend a lot of time optimizing my knowledge management and living space. I also like to do at least one seriously physically challenging thing every year.</p>",
     "children": [
       "work-environment",
       "play",
@@ -142,13 +142,13 @@
   {
     "id": "work-environment",
     "title": "Work Environment",
-    "body": "<p>I prefer setups where everything is derived from code and\n                                reproducible.</p>\n                                <p>I keep my environment configuration <a href=\"https://github.com/endremborza/setup\">here</a>.\n                                It's not always perfectly up to date and comprehensive, but it\n                                reflects how I work. And it helps me create a complete working\n                                environment on a clean Ubuntu installation within 15 minutes</p>\n                        ",
+    "body": "<p>I prefer setups where everything is derived from code and reproducible.</p>\n<p>I keep my environment configuration <a href=\"https://github.com/endremborza/setup\">here</a>. It&#x27;s not always perfectly up to date and comprehensive, but it reflects how I work. And it helps me create a complete working environment on a clean Ubuntu installation within 15 minutes</p>",
     "children": []
   },
   {
     "id": "play",
     "title": "Games & Play",
-    "body": "<p>I enjoy football (both kinds, but the European one a bit more),\n                                StarCraft, D&amp;D and chess. I believe my tastes have developed\n                                independently of this, but I definitely enjoy that both chess and\n                                StarCraft have been primary playgrounds for AI advancements, both\n                                kinds of football have grown immense data science and engineering\n                                ecosystems and D&amp;D was the basis for one of the most successful\n                                software development efforts I have seen in the XXI. century:\n                                Baldur's Gate 3.</p>\n                        ",
+    "body": "<p>I enjoy football (both kinds, but the European one a bit more), StarCraft, D&amp;D and chess. I believe my tastes have developed independently of this, but I definitely enjoy that both chess and StarCraft have been primary playgrounds for AI advancements, both kinds of football have grown immense data science and engineering ecosystems and D&amp;D was the basis for one of the most successful software development efforts I have seen in the XXI. century: Baldur&#x27;s Gate 3.</p>",
     "children": [
       "dnd",
       "football-fun"
@@ -157,19 +157,19 @@
   {
     "id": "dnd",
     "title": "D&D",
-    "body": "<p>I started playing in <b>2020</b>, and it turned out to be one of\n                                my primary recreational activities.</p>\n                                <p>I find that running a\n                                D&amp;D campaign is the ultimate test of any incorporeal inventory\n                                and note-taking system. You need to build a world, quickly retrieve\n                                information, very quickly input new information, and keep track of\n                                the knowledge of the world from the point of view of several PCs and\n                                NPCs. After trying a great number of options from the PKM and\n                                note-taking space, I settled for the time on <a href=\"https://github.com/logseq/logseq\">Logseq</a>,\n                                but am constantly building and improving my setup. </p>\n                        ",
+    "body": "<p>I started playing in <b>2020</b>, and it turned out to be one of my primary recreational activities.</p>\n<p>I find that running a D&amp;D campaign is the ultimate test of any incorporeal inventory and note-taking system. You need to build a world, quickly retrieve information, very quickly input new information, and keep track of the knowledge of the world from the point of view of several PCs and NPCs. After trying a great number of options from the PKM and note-taking space, I settled for the time on <a href=\"https://github.com/logseq/logseq\">Logseq</a>, but am constantly building and improving my setup.</p>",
     "children": []
   },
   {
     "id": "football-fun",
     "title": "Football for Fun",
-    "body": "<p>Played pretty seriously at youth level, fell in love with\n                                Manchester United at the best possible time - the semi-final of the\n                                1999 Champions League</p>\n                                <p>My love for football and determination\n                                to understand the wonderful complex mixture of signal and noise that\n                                is recorded of it in the form of more and more complex data actually\n                                contributed a lot to my professional path.</p>\n                        ",
+    "body": "<p>Played pretty seriously at youth level, fell in love with Manchester United at the best possible time - the semi-final of the 1999 Champions League</p>\n<p>My love for football and determination to understand the wonderful complex mixture of signal and noise that is recorded of it in the form of more and more complex data actually contributed a lot to my professional path.</p>",
     "children": []
   },
   {
     "id": "culture",
     "title": "Reviews & Culture",
-    "body": "<p>I like writing short reviews from time to time about films,\n                                games, albums as it is great practice in expression. <a href=\"https://www.imdb.com/user/ur23979373/reviews\">Film\n                                reviews</a> are public on imdb, <a href=\"https://rateyourmusic.com/~endremborza\">music</a>\n                                is going a lot slower</p>\n                        ",
+    "body": "<p>I like writing short reviews from time to time about films, games, albums as it is great practice in expression. <a href=\"https://www.imdb.com/user/ur23979373/reviews\">Film reviews</a> are public on imdb, <a href=\"https://rateyourmusic.com/~endremborza\">music</a> is going a lot slower</p>",
     "children": []
   }
 ]
