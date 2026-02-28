@@ -6,11 +6,11 @@ More of this in a structured, interactive format at [endremborza.github.io](http
 
 ## Rankless
 
-My biggest project. [Rankless](https://www.rankless.org/) is a platform for exploring massive scholarly datasets — over 3 billion citations among 300 million papers, with complex interactive queries that respond almost instantly. Built with a specialized Rust backend (multi-stage compilation aligned to data shape and size) and a Svelte frontend with hand-rolled SVGs and practically no dependencies. Originally conceived by [César Hidalgo](https://centerforcollectivelearning.org/) at the Center for Collective Learning, where I've worked since 2023. Nominated for a [Webby Award](https://www.webbyawards.com/) in 2025.
+My biggest project. [Rankless](https://www.rankless.org/) is a platform for exploring massive scholarly data. Over 3 billion citations among 300 million papers, with complex interactive queries that respond almost instantly. Built with a specialized Rust backend (multi-stage compilation aligned to data shape and size) and a Svelte frontend with hand-rolled SVGs and practically no dependencies. Originally conceived by César Hidalgo at the [Center for Collective Learning](https://centerforcollectivelearning.org/), where I've worked since 2023. Nominated for a [Webby Award](https://www.webbyawards.com/) in 2025.
 
 ## Data Science at Lidl
 
-2018–2021 at Lidl's Center of Excellence. We built machine learning systems for demand prediction and algorithms for delivery and distribution optimization that were deployed at European retail scale. Small team, tight feedback loops, production infrastructure (Kubernetes, Kafka, Elasticsearch, CI/CD). Demanding, productive, and formative — I left because I wanted more ownership of my work.
+2018–2021 at Lidl's Center of Excellence. We built machine learning systems for demand prediction and algorithms for delivery and distribution optimization that were deployed at European retail scale. Small team, high pressure, production infrastructure (Kubernetes, Kafka, Elasticsearch, CI/CD). Demanding, productive, and formative - I left because I wanted more ownership of my work.
 
 ## Research Infrastructure
 
@@ -22,7 +22,7 @@ I contribute to papers through data engineering, pipeline design, and scalable a
 
 ## Teaching
 
-Since 2015 I teach at [Rajk College for Advanced Studies](https://rajk.eu): programming, algorithm design, data processing, causal inference. I also guest lecture at Corvinus in machine learning and network science. Small classes, motivated students. I was awarded the title of Permanent Professor by Rajk's student community in 2022.
+Since 2015 I teach at [Rajk College for Advanced Studies](https://rajk.eu): programming, algorithm design, data processing, causal inference. I also guest lecture at Corvinus sometimes. Small classes, motivated students. I was awarded the title of Permanent Professor by Rajk's student community in 2022.
 
 ## Open Source & Tools
 
