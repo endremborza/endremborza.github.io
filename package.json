@@ -5,7 +5,6 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
-		"prebuild": "make generate",
 		"build": "vite build",
 		"deploy": "gh-pages -d build --dotfiles --nojekyll",
 		"preview": "vite preview",
