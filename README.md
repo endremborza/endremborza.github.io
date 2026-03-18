@@ -6,7 +6,7 @@ More of this in a structured, interactive format at [endremborza.github.io](http
 
 ## Rankless
 
-My biggest project. [Rankless](https://www.rankless.org/) is a platform for exploring massive scholarly data. Over 3 billion citations among 300 million papers, with complex interactive queries that respond almost instantly. Built with a specialized Rust backend (multi-stage compilation aligned to data shape and size) and a Svelte frontend with hand-rolled SVGs and practically no dependencies. Originally conceived by César Hidalgo at the [Center for Collective Learning](https://centerforcollectivelearning.org/), where I've worked since 2023. Nominated for a [Webby Award](https://www.webbyawards.com/) in 2025.
+My biggest project. [Rankless](https://www.rankless.org/) is a platform for exploring massive scholarly data. 2 billion citations among 300 million papers, with complex interactive queries that respond almost instantly. Built with a specialized Rust backend (multi-stage compilation aligned to data shape and size) and a Svelte frontend with hand-rolled SVGs and practically no dependencies. Originally conceived by César Hidalgo at the [Center for Collective Learning](https://centerforcollectivelearning.org/), where I've worked since 2023. Nominated for a [Webby Award](https://www.webbyawards.com/) in 2025.
 
 ## Data Science at Lidl
 
