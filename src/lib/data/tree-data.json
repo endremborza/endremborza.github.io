@@ -22,7 +22,7 @@
   {
     "id": "rankless",
     "title": "Rankless",
-    "body": "<p>Originally conceived by Cesar Hidalgo at <a href=\"https://centerforcollectivelearning.org/\">CCL</a>, <a href=\"https://www.rankless.org/\">Rankless</a> was a great engineering challenge. It processes 2 billion citations among 300 million papers and responds to complex interactive queries almost instantly.</p>\n<p>This required heavy optimization throughout: a specialized Rust backend with multi-stage compilation aligned to data shape and size, and a Svelte frontend with hand-rolled SVGs and practically no dependencies.</p>",
+    "body": "<p>Originally conceived by Cesar Hidalgo at <a href=\"https://centerforcollectivelearning.org/\">CCL</a>, <a href=\"https://www.rankless.org/\">Rankless</a> was a great engineering challenge. It processes 2 billion citations among 300 million papers and responds to complex interactive queries almost instantly.</p>\n<p>This required heavy optimization throughout: a specialized Rust backend with multi-stage compilation aligned to data shape and size, and a Svelte frontend with hand-rolled SVGs and practically no dependencies.</p>\n<p>A demo paper accepted at ICWE 2026 documents the architecture and data-specific compilation approach. In controlled benchmarks, the system responds to hierarchical queries 65x faster and uses 4x less peak memory than a PostgreSQL baseline.</p>",
     "children": [
       "ccl"
     ]
